@@ -4,6 +4,7 @@
 #include "esphome/components/uart/uart.h"
 #include "esphome/core/log.h"
 #include "parkside_plem_50_c3.h"
+#include "Wire.h"
 #include <cstring>
 
 namespace esphome {
@@ -13,8 +14,28 @@ static const char *TAG = "parkside_plem_50_c3";
 
 static const int BUFFER_SIZE = 100;
 
+static uint8_t I2C_DEV_ADDR = 0x3F;
+
+void onRequest(){
+  Wire.print(i++);
+  Wire.print(" Packets.");
+  ESP_LOGE(TAG, "onRequest");
+}
+
+void onReceive(int len){
+  ESP_LOGE(TAG, "onReceive[%d]: ", len);
+  while(Wire.available()){
+    ESP_LOGE(TAG, "data[%d]: ", Wire.read());
+  }
+}
+
 void ParksidePlem50C3Component::setup() {
   // nothing to do here
+  Wire.onReceive(onReceive);
+  Wire.onRequest(onRequest);
+  Wire.setClock(400000);
+  Wire.setPins(4,5);
+  Wire.begin((uint8_t)I2C_DEV_ADDR);
 }
 
 void ParksidePlem50C3Component::read_message(char buffer[])
