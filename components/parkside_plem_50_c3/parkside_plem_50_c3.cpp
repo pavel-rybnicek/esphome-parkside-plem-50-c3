@@ -32,7 +32,8 @@ void ParksidePlem50C3Component::setup() {
   Wire.onReceive(onReceive);
   Wire.onRequest(onRequest);
   Wire.setClock(400000);
-  //Wire.setPins(4,5);
+  Wire.setSDA(4);
+  Wire.setSCL(5);
   Wire.begin((uint8_t)I2C_DEV_ADDR);
 }
 
