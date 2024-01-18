@@ -29,6 +29,7 @@ void onReceive(int len){
 
 void ParksidePlem50C3Component::setup() {
   // nothing to do here
+      delay(10000);
   Wire.onReceive(onReceive);
   Wire.onRequest(onRequest);
   Wire.setClock(400000);
