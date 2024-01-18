@@ -17,8 +17,6 @@ static const int BUFFER_SIZE = 100;
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
 void onRequest(){
-  Wire.print(i++);
-  Wire.print(" Packets.");
   ESP_LOGE(TAG, "onRequest");
 }
 
@@ -89,30 +87,7 @@ void ParksidePlem50C3Component::wait_for(const char * waitForString)
 void ParksidePlem50C3Component::update() {
   char buffer[BUFFER_SIZE];
 
-  // init laser
-  this->write_message("<mALas>");
-  this->read_message(buffer); // returns <Las:0> or <Las:1>
-
-  this->write_message("<RDRG><jzmode><STRG055><quitjz>");
-  this->wait_for("<RG055>");
-  this->wait_for("<STRG055>");
-
-  this->write_message ("<RDRG><mAo>");
-  this->wait_for ("<RG055>");
-
-  // do measurement
-  int i = 0;
-  do
-  {
-    this->write_message("<mAm>");
-    this->read_message(buffer);
-  } while (this->process_measurement(buffer) && ++i < this->attempt_count_);
-
-  // shutdown laser
-  this->write_message("<mAs>");
-  this->wait_for("<m10s0>");
-  this->write_message("<mAp>");  // switch laser off
-  this->wait_for("<m10p0>");
+  ESP_LOGE(TAG, "update()");
 }
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
