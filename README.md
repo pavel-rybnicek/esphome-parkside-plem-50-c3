@@ -1,6 +1,8 @@
 # esphome-parkside-plem-50-c3
 Parkside PLEM 50 C3 laser range finder I2C Integration for ESPHome
 
+Work in progress, this is not a functional module.
+
 ## Description
 Parkside PLEM 50 C3 is a cheap (around €30) laser finder. I find this one very useful for monitoring water levels in water tanks and drainages.
 
