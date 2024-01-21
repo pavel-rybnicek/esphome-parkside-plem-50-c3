@@ -96,7 +96,7 @@ void ParksidePlem50C3Component::update() {
 //  delay(5000);
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
-  delay(1);
+  delay(1000);
 }
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
