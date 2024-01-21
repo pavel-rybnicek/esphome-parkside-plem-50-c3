@@ -2,6 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, text_sensor, uart
 from esphome.const import *
+from esphome import pins
 parkside_plem_50_c3_ns = cg.esphome_ns.namespace('parkside_plem_50_c3')
 ParksidePlem50C3Component = parkside_plem_50_c3_ns.class_('ParksidePlem50C3Component', cg.PollingComponent)
 
