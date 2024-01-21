@@ -5,6 +5,7 @@
 #include "esphome/core/log.h"
 #include "parkside_plem_50_c3.h"
 #include "Wire.h"
+#include "gpio.h"
 #include <cstring>
 
 namespace esphome {
@@ -30,7 +31,7 @@ void onReceive(int len){
 void ParksidePlem50C3Component::setup() {
   // nothing to do here
       delay(10000);
-  this->dc_pin_->setup();  // OUTPUT
+  pinMode(16, OUTPUT);
   Wire.onReceive(onReceive);
   Wire.onRequest(onRequest);
   Wire.setClock(400000);
@@ -91,9 +92,9 @@ void ParksidePlem50C3Component::update() {
   char buffer[BUFFER_SIZE];
 
   ESP_LOGD(TAG, "update()");
-  this->dc_pin_->digital_write(false);
+  digitalWrite(16, 0);
   delay(500);
-  this->dc_pin_->digital_write(true);
+  digitalWrite(16, 1);
   ESP_LOGD(TAG, "switched on");
 }
 

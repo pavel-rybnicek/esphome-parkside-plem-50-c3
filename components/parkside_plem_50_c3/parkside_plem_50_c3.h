@@ -14,7 +14,6 @@ class ParksidePlem50C3Component : public uart::UARTDevice, public PollingCompone
     void update() override;
     void dump_config() override;
 
-    void set_dc_pin(GPIOPin *dc_pin) { dc_pin_ = dc_pin; }
 
     void read_message(char buffer[]);
     void write_message(const char * message);
@@ -24,7 +23,6 @@ class ParksidePlem50C3Component : public uart::UARTDevice, public PollingCompone
 
   protected:
 
-    GPIOPin *dc_pin_;
 
     sensor::Sensor *distance_sensor_;
 

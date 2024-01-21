@@ -2,7 +2,6 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, text_sensor, uart
 from esphome.const import *
-from esphome import pins
 parkside_plem_50_c3_ns = cg.esphome_ns.namespace('parkside_plem_50_c3')
 ParksidePlem50C3Component = parkside_plem_50_c3_ns.class_('ParksidePlem50C3Component', cg.PollingComponent)
 
@@ -15,8 +14,6 @@ CONF_ATTEMPT_COUNT = "attempt_count"
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(ParksidePlem50C3Component),
-
-    cv.Required(CONF_DC_PIN): pins.gpio_output_pin_schema,
 
     cv.Optional(CONF_DISTANCE):
       sensor.sensor_schema(device_class=DEVICE_CLASS_DISTANCE,accuracy_decimals=0,state_class=STATE_CLASS_MEASUREMENT).extend(),
@@ -32,9 +29,6 @@ def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
     yield uart.register_uart_device(var, config)
-
-    dc = cg.gpio_pin_expression(config[CONF_DC_PIN])
-    cg.add(var.set_dc_pin(dc))
 
     if CONF_ATTEMPT_COUNT in config:
       conf = config[CONF_ATTEMPT_COUNT]
