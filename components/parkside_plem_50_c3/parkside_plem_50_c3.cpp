@@ -93,7 +93,7 @@ void ParksidePlem50C3Component::update() {
 
   ESP_LOGD(TAG, "update()");
   digitalWrite(16, 0);
-  delay(500);
+  delay(2000);
   digitalWrite(16, 1);
   ESP_LOGD(TAG, "switched on");
 }
