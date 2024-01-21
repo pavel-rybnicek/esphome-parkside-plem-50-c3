@@ -27,7 +27,7 @@ CONFIG_SCHEMA = cv.Schema({
 
 }).extend(cv.polling_component_schema('10s')).extend(uart.UART_DEVICE_SCHEMA)
 
-def to_code(config):
+async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
     yield uart.register_uart_device(var, config)
