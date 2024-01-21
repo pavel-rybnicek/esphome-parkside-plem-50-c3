@@ -14,6 +14,8 @@ class ParksidePlem50C3Component : public uart::UARTDevice, public PollingCompone
     void update() override;
     void dump_config() override;
 
+    void set_dc_pin(GPIOPin *dc_pin) { dc_pin_ = dc_pin; }
+
     void read_message(char buffer[]);
     void write_message(const char * message);
     void set_distance_sensor(sensor::Sensor *s) { distance_sensor_ = s; }
@@ -21,6 +23,8 @@ class ParksidePlem50C3Component : public uart::UARTDevice, public PollingCompone
     void set_attempt_count(uint32_t s) { attempt_count_ = s; }
 
   protected:
+
+    GPIOPin *dc_pin_;
 
     sensor::Sensor *distance_sensor_;
 

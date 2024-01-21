@@ -30,12 +30,13 @@ void onReceive(int len){
 void ParksidePlem50C3Component::setup() {
   // nothing to do here
       delay(10000);
+  this->dc_pin_->setup();  // OUTPUT
   Wire.onReceive(onReceive);
   Wire.onRequest(onRequest);
   Wire.setClock(400000);
   Wire.setSDA(4);
   Wire.setSCL(5);
-  Wire.begin((uint8_t)I2C_DEV_ADDR);
+  Wire.begin(I2C_DEV_ADDR);
 }
 
 void ParksidePlem50C3Component::read_message(char buffer[])
@@ -89,7 +90,11 @@ void ParksidePlem50C3Component::wait_for(const char * waitForString)
 void ParksidePlem50C3Component::update() {
   char buffer[BUFFER_SIZE];
 
-  ESP_LOGE(TAG, "update()");
+  ESP_LOGD(TAG, "update()");
+  this->dc_pin_->digital_write(false);
+  delay(500);
+  this->dc_pin_->digital_write(true);
+  ESP_LOGD(TAG, "switched on");
 }
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
