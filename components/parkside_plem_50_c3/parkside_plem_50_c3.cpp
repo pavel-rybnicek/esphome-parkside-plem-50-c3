@@ -13,12 +13,12 @@ namespace parkside_plem_50_c3 {
 
 static const char *TAG = "parkside_plem_50_c3";
 
-static const int BUFFER_SIZE = 100;
+static const int BUFSIZE = 200;
 
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
-byte data[BUFSIZE];
-byte dataToPrint[BUFSIZE];
+static byte data[BUFSIZE];
+static byte dataToPrint[BUFSIZE];
 
 int i = 0;
 
@@ -57,9 +57,9 @@ void ParksidePlem50C3Component::read_message(char buffer[])
 {/*
   uint8_t buffer_index = 0;
 
-  memset (buffer, 0, BUFFER_SIZE);
+  memset (buffer, 0, BUFSIZE);
 
-  for (int i = 0; buffer_index < BUFFER_SIZE; i++) {
+  for (int i = 0; buffer_index < BUFSIZE; i++) {
     if (i > 10000)
     {
       ESP_LOGE(TAG, "Timeout, message not complete. Received: %s", (char *) buffer);
@@ -91,7 +91,7 @@ void ParksidePlem50C3Component::write_message(const char * message)
 
 void ParksidePlem50C3Component::wait_for(const char * waitForString)
 {/*
-  char buffer[BUFFER_SIZE];
+  char buffer[BUFSIZE];
 
   this->read_message(buffer);
 
@@ -102,7 +102,7 @@ void ParksidePlem50C3Component::wait_for(const char * waitForString)
 }
 
 void ParksidePlem50C3Component::update() {
-  char buffer[BUFFER_SIZE];
+  char buffer[BUFSIZE];
 
   ESP_LOGD(TAG, "update()");
 // vypnuti
