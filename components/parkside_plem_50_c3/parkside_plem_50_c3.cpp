@@ -124,7 +124,7 @@ ESP_LOGD(TAG, formattedOut);
   }
 }
 
-void ParksidePlem50C3Component::decodeLastLine(char result[], const char * line)
+void ParksidePlem50C3Component::decodeLastLine(char result[], const byte * line)
 {
   // XXX pouzit line
   strcat (result, this->decodeDigitLastLine(dataPacket[95], dataPacket[97]));
