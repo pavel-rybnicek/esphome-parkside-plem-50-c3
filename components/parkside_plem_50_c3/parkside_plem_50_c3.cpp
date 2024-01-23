@@ -163,7 +163,7 @@ void ParksidePlem50C3Component::update() {
   strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
   strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
   strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
-  this->decodeUnit(&line, dataPacket[119]);
+  this->decodeUnit(&line, (char)dataPacket[119]);
   ESP_LOGD(TAG, line);
 
 
