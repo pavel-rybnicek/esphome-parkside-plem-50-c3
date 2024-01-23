@@ -90,7 +90,7 @@ void ParksidePlem50C3Component::write_message(const char * message)
   write_str(message);*/
 }
 
-void ParksidePlem50C3Component::wait_for(const char * waitForString)
+void ParksidePlem50C3Component::decodeLine(char * result, const char * line)
 {/*
   char buffer[BUFSIZE];
 
@@ -112,11 +112,13 @@ void ParksidePlem50C3Component::update() {
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
   //cli();
-  for (int j = 0; j < 100; j++)
+  for (int j = 0; j < 99; j++)
   {
     sprintf(formattedOut + j*2, "%02X", dataToPrint[j*2+1]); 
   }
-    ESP_LOGE(TAG, formattedOut);
+  ESP_LOGD(TAG, formattedOut);
+
+
 
   //sei();
   delay(1000);
