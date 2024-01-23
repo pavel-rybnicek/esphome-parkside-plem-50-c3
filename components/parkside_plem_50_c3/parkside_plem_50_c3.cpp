@@ -145,12 +145,12 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, formattedOut);
 
   char line[10] = "";
-  strcat (line, this->decodeDigitLastLine(dataPacket[93], dataPacket[95]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[97], dataPacket[99]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[101], dataPacket[103]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[105], dataPacket[107]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[109], dataPacket[111]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[113], dataPacket[115]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[95], dataPacket[97]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[99], dataPacket[101]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[103], dataPacket[105]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
   ESP_LOGD(TAG, line);
 
 
