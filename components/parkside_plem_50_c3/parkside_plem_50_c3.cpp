@@ -90,7 +90,7 @@ void ParksidePlem50C3Component::write_message(const char * message)
   write_str(message);*/
 }
 
-const char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2)
+const char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2) // XXX predelat vystup na parametr
 {
 char formattedOut[10] = "";
     sprintf(formattedOut, "%04X", digit1 << 8 | digit2); 
@@ -113,7 +113,7 @@ ESP_LOGD(TAG, formattedOut);
     case 0x141A: return "5";
     case 0x1C1A: return ".5";
     case 0x161A: return "6";
-    case 0x1E1A: return ".6";
+    case 0x1E1A: return ".6"; // XXX strcat
     case 0x0016: return "7";
     case 0x0816: return ".7";
     case 0x161E: return "8";
@@ -124,15 +124,22 @@ ESP_LOGD(TAG, formattedOut);
   }
 }
 
-void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
+void ParksidePlem50C3Component::decodeLastLine(char result[], const char * line)
 {
+  // XXX pouzit line
+  strcat (result, this->decodeDigitLastLine(dataPacket[95], dataPacket[97]));
+  strcat (result, this->decodeDigitLastLine(dataPacket[99], dataPacket[101]));
+  strcat (result, this->decodeDigitLastLine(dataPacket[103], dataPacket[105]));
+  strcat (result, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
+  strcat (result, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
+  strcat (result, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
 }
 
 void ParksidePlem50C3Component::decodeUnit(char result[], const char unitCode)
 {
-  switch (unitCode)
+  switch (unitCode) // XXX mozna by melo byt spis byte - obecne
   {
-    case 0x00: strcat (result, ""); break;
+    case 0x00: strcat (result, ""); break; // XXX do promenne a delat jeden strcat
     case 0x0A: strcat (result, "m"); break;
     case 0x10: strcat (result, "ft"); break;
     case 0x06: strcat (result, "in"); break;
@@ -157,12 +164,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, formattedOut);
 
   char line[10] = "";
-  strcat (line, this->decodeDigitLastLine(dataPacket[95], dataPacket[97]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[99], dataPacket[101]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[103], dataPacket[105]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
+  this->decodeLastLine (line, dataPacket[95]);
   this->decodeUnit(line, (char)dataPacket[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line);
 
