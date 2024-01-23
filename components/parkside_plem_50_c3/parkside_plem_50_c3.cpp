@@ -46,7 +46,8 @@ void onReceive(int len){
 void ParksidePlem50C3Component::setup() {
   // nothing to do here
   //    delay(10000);
-  //pinMode(16, OUTPUT);
+  pinMode(4, OUTPUT);
+  digitalWrite(4, 0); // XXX zhasnuti diody
   Wire1.onReceive(onReceive);
   Wire1.onRequest(onRequest);
   //Wire1.setClock(400000);
