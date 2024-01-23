@@ -23,9 +23,9 @@ void onRequest(){
 
 void onReceive(int len){
   ESP_LOGE(TAG, "onReceive[%d]: ", len);
-  while(Wire.available()){
-    ESP_LOGE(TAG, "data[%d]: ", Wire.read());
-  }
+  //while(Wire.available()){
+    //ESP_LOGE(TAG, "data[%d]: ", Wire.read());
+  //}
 }
 
 void ParksidePlem50C3Component::setup() {
