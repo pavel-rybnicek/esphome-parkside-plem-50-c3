@@ -128,7 +128,7 @@ void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
 {
 }
 
-void ParksidePlem50C3Component::decodeUnit(char ** result, const char unitCode)
+void ParksidePlem50C3Component::decodeUnit(char * result[], const char unitCode)
 {
   switch (unitCode)
   {
@@ -163,7 +163,7 @@ void ParksidePlem50C3Component::update() {
   strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
   strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
   strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
-  this->decodeUnit((char**)&line, (char)dataPacket[119]);
+  this->decodeUnit(&line, (char)dataPacket[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line);
 
 
