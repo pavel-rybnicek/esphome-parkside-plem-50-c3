@@ -110,7 +110,7 @@ void ParksidePlem50C3Component::update() {
 //  delay(5000);
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
-  cli();
+  //cli();
   for (int j = 0; j < 1; j++)
   {
     char formattedOut[3] = "  ";
@@ -118,7 +118,7 @@ void ParksidePlem50C3Component::update() {
     ESP_LOGE(TAG, formattedOut);
   }
 
-  sei();
+  //sei();
   delay(1000);
 }
 
