@@ -113,7 +113,7 @@ void ParksidePlem50C3Component::update() {
   cli();
   for (int j = 0; j < 99; j++)
   {
-    char formattedOut[3] = "";
+    char formattedOut[3] = "  ";
     sprintf(formattedOut, "%02X", dataToPrint[j*2+1]); 
     ESP_LOGE(TAG, formattedOut);
   }
