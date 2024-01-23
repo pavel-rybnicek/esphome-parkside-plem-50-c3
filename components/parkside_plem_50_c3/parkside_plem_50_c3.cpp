@@ -39,7 +39,7 @@ void ParksidePlem50C3Component::setup() {
 }
 
 void ParksidePlem50C3Component::read_message(char buffer[])
-{
+{/*
   uint8_t buffer_index = 0;
 
   memset (buffer, 0, BUFFER_SIZE);
@@ -65,17 +65,17 @@ void ParksidePlem50C3Component::read_message(char buffer[])
   }
   // terminate the string
   buffer[buffer_index] = 0;
-  ESP_LOGD(TAG, "Received: %s", (char *) buffer);
+  ESP_LOGD(TAG, "Received: %s", (char *) buffer);*/
 }
 
 void ParksidePlem50C3Component::write_message(const char * message)
-{
+{/*
   ESP_LOGD(TAG, "Sending: %s", message);
-  write_str(message);
+  write_str(message);*/
 }
 
 void ParksidePlem50C3Component::wait_for(const char * waitForString)
-{
+{/*
   char buffer[BUFFER_SIZE];
 
   this->read_message(buffer);
@@ -83,7 +83,7 @@ void ParksidePlem50C3Component::wait_for(const char * waitForString)
   if (strcmp (waitForString, buffer))
   {
     ESP_LOGW(TAG, "Didn't receive expected value. Expected: '%s' Received: '%s'", waitForString, buffer);
-  }
+  }*/
 }
 
 void ParksidePlem50C3Component::update() {
