@@ -90,16 +90,12 @@ void ParksidePlem50C3Component::write_message(const char * message)
   write_str(message);*/
 }
 
-void ParksidePlem50C3Component::decodeLine(char * result, const char * line)
-{/*
-  char buffer[BUFSIZE];
+void ParksidePlem50C3Component::decodeDigitLastLine(char * result, const char * digit)
+{
+}
 
-  this->read_message(buffer);
-
-  if (strcmp (waitForString, buffer))
-  {
-    ESP_LOGW(TAG, "Didn't receive expected value. Expected: '%s' Received: '%s'", waitForString, buffer);
-  }*/
+void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
+{
 }
 
 void ParksidePlem50C3Component::update() {

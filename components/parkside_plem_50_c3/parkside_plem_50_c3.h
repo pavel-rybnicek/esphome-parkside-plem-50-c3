@@ -30,7 +30,8 @@ class ParksidePlem50C3Component :  public PollingComponent {
 
     uint32_t attempt_count_ = 1;
 
-    void wait_for(const char * waitForString);
+    void decodeLastLine(char * result, const char * line);
+    void decodeDigitLastLine(char * result, const char * digit);
     void process_error (const char * buffer, const char * errorText);
     int process_measurement (const char * measurement);
 
