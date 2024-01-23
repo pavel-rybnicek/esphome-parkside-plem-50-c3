@@ -5,7 +5,6 @@
 #include "esphome/core/log.h"
 #include "parkside_plem_50_c3.h"
 #include "Wire.h"
-#include <Arduino.h>
 #include <cstring>
 
 namespace esphome {
