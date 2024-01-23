@@ -27,7 +27,7 @@ void onRequest(){
 }
 
 void onReceive(int len){
-  ESP_LOGE(TAG, "onReceive[%d]: ", len);
+  //ESP_LOGE(TAG, "onReceive[%d]: ", len);
   while(Wire1.available()){
     data[i++] = Wire1.read();
   }
