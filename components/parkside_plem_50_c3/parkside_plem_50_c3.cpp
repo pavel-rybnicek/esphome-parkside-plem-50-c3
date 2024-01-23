@@ -17,15 +17,30 @@ static const int BUFFER_SIZE = 100;
 
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
+byte data[BUFSIZE];
+byte dataToPrint[BUFSIZE];
+
+int i = 0;
+
 void onRequest(){
   ESP_LOGE(TAG, "onRequest");
 }
 
 void onReceive(int len){
   ESP_LOGE(TAG, "onReceive[%d]: ", len);
-  //while(Wire.available()){
-    //ESP_LOGE(TAG, "data[%d]: ", Wire.read());
-  //}
+  while(Wire.available()){
+    data[i++] = Wire.read();
+  }
+  if (!(0x80 == data[0] && 0xB0 == data[1]))
+  {
+    i = 0;
+    return;
+  }
+  if (i >= 198)
+  {
+    memcpy (dataToPrint, data, 198);
+    i = 0;
+  }
 }
 
 void ParksidePlem50C3Component::setup() {
@@ -95,6 +110,15 @@ void ParksidePlem50C3Component::update() {
 //  delay(5000);
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
+  cli();
+  for (int j = 0; j < 99; j++)
+  {
+    char formattedOut[3] = "";
+    sprintf(formattedOut, "%02X", dataToPrint[j*2+1]); 
+    ESP_LOGE(TAG, formattedOut);
+  }
+
+  sei();
   delay(1000);
 }
 
