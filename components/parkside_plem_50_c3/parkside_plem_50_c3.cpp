@@ -102,7 +102,7 @@ void ParksidePlem50C3Component::wait_for(const char * waitForString)
 }
 
 void ParksidePlem50C3Component::update() {
-  char buffer[BUFSIZE];
+  char formattedOut[BUFSIZE] = "";
 
   ESP_LOGD(TAG, "update()");
 // vypnuti
@@ -113,10 +113,9 @@ void ParksidePlem50C3Component::update() {
   //cli();
   for (int j = 0; j < 30; j++)
   {
-    char formattedOut[3] = "  ";
-    sprintf(formattedOut, "%02X", dataToPrint[j*2+1]); 
-    ESP_LOGE(TAG, formattedOut);
+    sprintf(formattedOut[j*2], "%02X", dataToPrint[j*2+1]); 
   }
+    ESP_LOGE(TAG, formattedOut);
 
   //sei();
   delay(1000);
