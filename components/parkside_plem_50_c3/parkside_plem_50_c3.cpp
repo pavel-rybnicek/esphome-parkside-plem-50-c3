@@ -49,7 +49,7 @@ void ParksidePlem50C3Component::setup() {
   //pinMode(16, OUTPUT);
   Wire1.onReceive(onReceive);
   Wire1.onRequest(onRequest);
-  Wire1.setClock(400000);
+  //Wire1.setClock(400000);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 }
 
