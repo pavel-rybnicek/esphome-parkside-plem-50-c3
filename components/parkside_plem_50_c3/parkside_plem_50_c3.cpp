@@ -92,6 +92,9 @@ void ParksidePlem50C3Component::write_message(const char * message)
 
 const char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2)
 {
+char formattedOut[10] = "";
+    sprintf(formattedOut, "%04X", digit1 << 8 | digit2); 
+
   switch (digit1 << 8 | digit2)
   {
     case 0x0000: return "";
