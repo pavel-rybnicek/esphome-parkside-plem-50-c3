@@ -18,7 +18,7 @@ static const int BUFSIZE = 200;
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static byte data[BUFSIZE];
-static byte dataToPrint[BUFSIZE];
+static byte dataToPrint[BUFSIZE] = " N o t h i n g   y e t";
 
 int i = 0;
 
@@ -111,7 +111,7 @@ void ParksidePlem50C3Component::update() {
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
   //cli();
-  for (int j = 0; j < 1; j++)
+  for (int j = 0; j < 30; j++)
   {
     char formattedOut[3] = "  ";
     sprintf(formattedOut, "%02X", dataToPrint[j*2+1]); 
