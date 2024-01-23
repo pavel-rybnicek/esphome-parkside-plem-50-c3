@@ -111,7 +111,7 @@ void ParksidePlem50C3Component::update() {
 //  digitalWrite(16, 1);
 //  ESP_LOGD(TAG, "switched on");
   cli();
-  for (int j = 0; j < 99; j++)
+  for (int j = 0; j < 1; j++)
   {
     char formattedOut[3] = "  ";
     sprintf(formattedOut, "%02X", dataToPrint[j*2+1]); 
