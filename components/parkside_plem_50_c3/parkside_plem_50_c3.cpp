@@ -35,7 +35,7 @@ void ParksidePlem50C3Component::setup() {
   Wire.onReceive(onReceive);
   Wire.onRequest(onRequest);
   Wire.setClock(400000);
-  Wire.begin(I2C_DEV_ADDR, 4, 5, 400000);
+  Wire.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 }
 
 void ParksidePlem50C3Component::read_message(char buffer[])
