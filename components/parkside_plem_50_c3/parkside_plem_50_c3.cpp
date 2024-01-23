@@ -164,7 +164,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, formattedOut);
 
   char line[10] = "";
-  this->decodeLastLine (line, (char)dataPacket[95]); // FIXME fuj
+  this->decodeLastLine (line, dataPacket + 95);
   this->decodeUnit(line, (char)dataPacket[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line);
 
