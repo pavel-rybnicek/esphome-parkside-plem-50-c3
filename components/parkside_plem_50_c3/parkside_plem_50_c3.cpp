@@ -124,8 +124,14 @@ ESP_LOGD(TAG, formattedOut);
   }
 }
 
-void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
+void ParksidePlem50C3Component::decodeLastLine(char ** result, const char * line)
 {
+  strcat (*result, this->decodeDigitLastLine(line[1], line[3]));
+  strcat (*result, this->decodeDigitLastLine(line[5], line[7]));
+  strcat (*result, this->decodeDigitLastLine(line[9], line[11]));
+  strcat (*result, this->decodeDigitLastLine(line[11], line[15]));
+  strcat (*result, this->decodeDigitLastLine(line[15], line[19]));
+  strcat (*result, this->decodeDigitLastLine(line[19], line[21]));
 }
 
 void ParksidePlem50C3Component::update() {
@@ -145,12 +151,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, formattedOut);
 
   char line[10] = "";
-  strcat (line, this->decodeDigitLastLine(dataPacket[95], dataPacket[97]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[99], dataPacket[101]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[103], dataPacket[105]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
-  strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
+  this->decodeLastLine (&line, dataPacket[94]);
   ESP_LOGD(TAG, line);
 
 
