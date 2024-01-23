@@ -18,7 +18,7 @@ static const int BUFSIZE = 200;
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static byte data[BUFSIZE];
-static byte dataToPrint[BUFSIZE] = " N o t h i n g   y e t";
+static byte dataPacket[BUFSIZE] = " N o t h i n g   y e t";
 
 int i = 0;
 
@@ -38,7 +38,7 @@ void onReceive(int len){
   }
   if (i >= 198)
   {
-    memcpy (dataToPrint, data, 198);
+    memcpy (dataPacket, data, 198);
     i = 0;
   }
 }
@@ -140,17 +140,17 @@ void ParksidePlem50C3Component::update() {
   //cli();
   for (int j = 0; j < 99; j++)
   {
-    sprintf(formattedOut + j*2, "%02X", dataToPrint[j*2+1]); 
+    sprintf(formattedOut + j*2, "%02X", dataPacket[j*2+1]); 
   }
   ESP_LOGD(TAG, formattedOut);
 
   char line[10] = "";
-  strcat (line, this->decodeDigitLastLine(dataToPrint[47], dataToPrint[49]));
-  strcat (line, this->decodeDigitLastLine(dataToPrint[51], dataToPrint[53]));
-  strcat (line, this->decodeDigitLastLine(dataToPrint[55], dataToPrint[57]));
-  strcat (line, this->decodeDigitLastLine(dataToPrint[59], dataToPrint[61]));
-  strcat (line, this->decodeDigitLastLine(dataToPrint[63], dataToPrint[65]));
-  strcat (line, this->decodeDigitLastLine(dataToPrint[67], dataToPrint[69]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[93], dataPacket[95]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[97], dataPacket[99]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[101], dataPacket[103]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[105], dataPacket[107]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[109], dataPacket[111]));
+  strcat (line, this->decodeDigitLastLine(dataPacket[113], dataPacket[115]));
   ESP_LOGD(TAG, line);
 
 
