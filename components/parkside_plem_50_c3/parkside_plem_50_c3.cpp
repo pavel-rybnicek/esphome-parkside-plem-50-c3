@@ -94,7 +94,7 @@ const char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, c
 {
 char formattedOut[10] = "";
     sprintf(formattedOut, "%04X", digit1 << 8 | digit2); 
-
+ESP_LOGD(TAG, formattedOut);
   switch (digit1 << 8 | digit2)
   {
     case 0x0000: return "";
