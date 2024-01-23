@@ -90,8 +90,34 @@ void ParksidePlem50C3Component::write_message(const char * message)
   write_str(message);*/
 }
 
-void ParksidePlem50C3Component::decodeDigitLastLine(char * result, const char * digit)
+char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2)
 {
+  switch (digit1 << 8 | digit2)
+  {
+    case "0000": return "";
+    case "0400": return "-";
+    case "121E": return "0";
+    case "1A1E": return ".0";
+    case "0006": return "1";
+    case "0806": return ".1";
+    case "061C": return "2";
+    case "0E1C": return ".2";
+    case "041E": return "3";
+    case "0C1E": return ".3";
+    case "1406": return "4";
+    case "1C06": return ".4";
+    case "141A": return "5";
+    case "1C1A": return ".5";
+    case "161A": return "6";
+    case "1E1A": return ".6";
+    case "0016": return "7";
+    case "0816": return ".7";
+    case "161E": return "8";
+    case "1E1E": return ".8";
+    case "141E": return "9";
+    case "1C1E": return ".9";
+    default: return "?";
+  }
 }
 
 void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
@@ -114,6 +140,14 @@ void ParksidePlem50C3Component::update() {
   }
   ESP_LOGD(TAG, formattedOut);
 
+  char line[10] = "";
+  strcat (&line, this->decodeDigitLastLine(formattedOut[23], formattedOut[24]));
+  strcat (&line, this->decodeDigitLastLine(formattedOut[25], formattedOut[26]));
+  strcat (&line, this->decodeDigitLastLine(formattedOut[27], formattedOut[28]));
+  strcat (&line, this->decodeDigitLastLine(formattedOut[29], formattedOut[30]));
+  strcat (&line, this->decodeDigitLastLine(formattedOut[31], formattedOut[32]));
+  strcat (&line, this->decodeDigitLastLine(formattedOut[33], formattedOut[34]));
+  ESP_LOGD(TAG, line);
 
 
   //sei();
