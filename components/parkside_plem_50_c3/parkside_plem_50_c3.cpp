@@ -94,28 +94,28 @@ char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const c
 {
   switch (digit1 << 8 | digit2)
   {
-    case "0000": return "";
-    case "0400": return "-";
-    case "121E": return "0";
-    case "1A1E": return ".0";
-    case "0006": return "1";
-    case "0806": return ".1";
-    case "061C": return "2";
-    case "0E1C": return ".2";
-    case "041E": return "3";
-    case "0C1E": return ".3";
-    case "1406": return "4";
-    case "1C06": return ".4";
-    case "141A": return "5";
-    case "1C1A": return ".5";
-    case "161A": return "6";
-    case "1E1A": return ".6";
-    case "0016": return "7";
-    case "0816": return ".7";
-    case "161E": return "8";
-    case "1E1E": return ".8";
-    case "141E": return "9";
-    case "1C1E": return ".9";
+    case 0x0000: return "";
+    case 0x0400: return "-";
+    case 0x121E: return "0";
+    case 0x1A1E: return ".0";
+    case 0x0006: return "1";
+    case 0x0806: return ".1";
+    case 0x061C: return "2";
+    case 0x0E1C: return ".2";
+    case 0x041E: return "3";
+    case 0x0C1E: return ".3";
+    case 0x1406: return "4";
+    case 0x1C06: return ".4";
+    case 0x141A: return "5";
+    case 0x1C1A: return ".5";
+    case 0x161A: return "6";
+    case 0x1E1A: return ".6";
+    case 0x0016: return "7";
+    case 0x0816: return ".7";
+    case 0x161E: return "8";
+    case 0x1E1E: return ".8";
+    case 0x141E: return "9";
+    case 0x1C1E: return ".9";
     default: return "?";
   }
 }
