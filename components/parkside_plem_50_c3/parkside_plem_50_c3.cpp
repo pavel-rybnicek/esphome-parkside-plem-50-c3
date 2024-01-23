@@ -28,8 +28,8 @@ void onRequest(){
 
 void onReceive(int len){
   ESP_LOGE(TAG, "onReceive[%d]: ", len);
-  while(Wire.available()){
-    data[i++] = Wire.read();
+  while(Wire1.available()){
+    data[i++] = Wire1.read();
   }
   if (!(0x80 == data[0] && 0xB0 == data[1]))
   {
@@ -47,10 +47,10 @@ void ParksidePlem50C3Component::setup() {
   // nothing to do here
   //    delay(10000);
   //pinMode(16, OUTPUT);
-  Wire.onReceive(onReceive);
-  Wire.onRequest(onRequest);
-  Wire.setClock(400000);
-  Wire.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
+  Wire1.onReceive(onReceive);
+  Wire1.onRequest(onRequest);
+  Wire1.setClock(400000);
+  Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 }
 
 void ParksidePlem50C3Component::read_message(char buffer[])
