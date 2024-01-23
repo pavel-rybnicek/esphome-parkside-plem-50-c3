@@ -8,7 +8,7 @@
 namespace esphome {
 namespace parkside_plem_50_c3 {
 
-class ParksidePlem50C3Component : public uart::UARTDevice, public PollingComponent {
+class ParksidePlem50C3Component :  public PollingComponent {
   public:
     void setup() override;
     void update() override;
