@@ -128,6 +128,18 @@ void ParksidePlem50C3Component::decodeLastLine(char * result, const char * line)
 {
 }
 
+void ParksidePlem50C3Component::decodeUnit(char ** result, const char unitCode)
+{
+  switch (unitCode)
+  {
+    case 0x00: strcat (*result, "");
+    case 0x0A: strcat (*result, "m");
+    case 0x10: strcat (*result, "ft");
+    case 0x06: strcat (*result, "in");
+    default: strcat (*result, "?");
+  }
+}
+
 void ParksidePlem50C3Component::update() {
   char formattedOut[BUFSIZE] = "";
 
@@ -151,6 +163,7 @@ void ParksidePlem50C3Component::update() {
   strcat (line, this->decodeDigitLastLine(dataPacket[107], dataPacket[109]));
   strcat (line, this->decodeDigitLastLine(dataPacket[111], dataPacket[113]));
   strcat (line, this->decodeDigitLastLine(dataPacket[115], dataPacket[117]));
+  this->decodeUnit(&line, dataPacket[119]);
   ESP_LOGD(TAG, line);
 
 
