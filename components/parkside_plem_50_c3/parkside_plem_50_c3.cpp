@@ -1,7 +1,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/text_sensor/text_sensor.h"
-#include "esphome/components/uart/uart.h"
+//#include "esphome/components/uart/uart.h"
 #include "esphome/core/log.h"
 #include "parkside_plem_50_c3.h"
 #include "Wire.h"
