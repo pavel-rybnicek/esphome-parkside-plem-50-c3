@@ -132,11 +132,11 @@ void ParksidePlem50C3Component::decodeUnit(char result[], const char unitCode)
 {
   switch (unitCode)
   {
-    case 0x00: strcat (result, "");
-    case 0x0A: strcat (result, "m");
-    case 0x10: strcat (result, "ft");
-    case 0x06: strcat (result, "in");
-    default: strcat (result, "?");
+    case 0x00: strcat (result, ""); break;
+    case 0x0A: strcat (result, "m"); break;
+    case 0x10: strcat (result, "ft"); break;
+    case 0x06: strcat (result, "in"); break;
+    default: strcat (result, "?"); break;
   }
 }
 
