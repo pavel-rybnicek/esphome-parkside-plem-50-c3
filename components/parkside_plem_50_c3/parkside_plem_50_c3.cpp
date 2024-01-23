@@ -90,7 +90,7 @@ void ParksidePlem50C3Component::write_message(const char * message)
   write_str(message);*/
 }
 
-char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2)
+const char * ParksidePlem50C3Component::decodeDigitLastLine(const char digit1, const char digit2)
 {
   switch (digit1 << 8 | digit2)
   {
