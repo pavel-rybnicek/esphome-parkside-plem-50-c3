@@ -46,8 +46,8 @@ void onReceive(int len){
 
 void ParksidePlem50C3Component::setup() {
   // init the arrays
-  memset (packet_incoming, 0, BUFSIZE);
-  memset (packet_last, 0, BUFSIZE);
+  memset (packet_incoming, 1, BUFSIZE);
+  memset (packet_last, 2, BUFSIZE);
   
   pinMode(4, OUTPUT);
   digitalWrite(4, 0); // XXX zhasnuti diody
