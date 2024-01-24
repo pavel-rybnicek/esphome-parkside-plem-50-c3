@@ -135,14 +135,13 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
     default: digit_string =  "?";
   }
   strcat (result, digit_string);
-  char formattedOut[10] = ""; // TODO vyhodit, nahradit funkci
-  sprintf(formattedOut, "%04X %s", digit1 << 8 | digit2, result); 
-  ESP_LOGD(TAG, formattedOut);
-
 }
 
 void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
 {
+  this->log_data_packet(line, 20);
+  ESP_LOGD(TAG, result);
+
   this->decode_digit(result, line[31], line[33]);
   this->decode_digit(result, line[27], line[29]);
   this->decode_digit(result, line[23], line[25]);
