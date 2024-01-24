@@ -22,11 +22,6 @@ static byte packet_last[BUFSIZE];     // last completely received packet
 
 int i = 0;
 
-void onRequest(){
-  // nothing to do here XXX vyhodit
-  // we only read data
-}
-
 void onReceive(int len){
   //ESP_LOGE(TAG, "onReceive[%d]: ", len);
   while(Wire1.available()){
@@ -52,7 +47,6 @@ void ParksidePlem50C3Component::setup() {
   pinMode(4, OUTPUT);
   digitalWrite(4, 0); // XXX zhasnuti diody
   Wire1.onReceive(onReceive);
-  Wire1.onRequest(onRequest);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 }
 
@@ -173,7 +167,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  ESP_LOGD(TAG, "update()");
+  // ESP_LOGD(TAG, "update()");
   // vypnuti
   //  digitalWrite(16, 0);
   //  delay(5000);
