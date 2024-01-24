@@ -105,11 +105,6 @@ void ParksidePlem50C3Component::decode_last_line(char result[], const byte * lin
 
 void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, const byte digit2)
 {
-  char formattedOut[10] = ""; // TODO vyhodit, nahradit funkci
-  sprintf(formattedOut, "%04X", digit1 << 8 | digit2); 
-  ESP_LOGD(TAG, "%02X %02X", digit1, digit2);
-  ESP_LOGD(TAG, formattedOut);
-
   const char * digit_string = "";
   switch (digit1 << 8 | digit2)
   {
@@ -140,6 +135,10 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
     default: digit_string =  "?";
   }
   strcat (result, digit_string);
+  char formattedOut[10] = ""; // TODO vyhodit, nahradit funkci
+  sprintf(formattedOut, "%04X %s", digit1 << 8 | digit2, result); 
+  ESP_LOGD(TAG, formattedOut);
+
 }
 
 void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
