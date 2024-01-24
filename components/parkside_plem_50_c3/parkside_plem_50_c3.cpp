@@ -197,7 +197,6 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, line4);
 
   //sei();
-  delay(1000); // TODO vyhodit
 }
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
