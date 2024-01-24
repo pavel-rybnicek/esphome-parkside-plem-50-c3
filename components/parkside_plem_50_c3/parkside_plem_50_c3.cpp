@@ -11,11 +11,11 @@ namespace parkside_plem_50_c3 {
 
 static const char *TAG = "parkside_plem_50_c3";
 
-static const int BUFSIZE = 200; // TODO udělat jako dvojnásobek packet_len
-
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PACKET_LEN = 99;
+
+static const int BUFSIZE = PACKET_LEN * 2;
 
 static byte packet_incoming[BUFSIZE]; // buffer for currently coming buffer
 static byte packet_last[BUFSIZE];     // last completely received packet
@@ -53,7 +53,7 @@ void ParksidePlem50C3Component::setup() {
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
 {
   const char * digit_string;
-  switch (digit1 << 8 | digit2) // XXX extrahovat?
+  switch (digit1 << 8 | digit2)
   {
     case 0x0000: digit_string =  ""; break;
     case 0x0400: digit_string =  "-"; break;
