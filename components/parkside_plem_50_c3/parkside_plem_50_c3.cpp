@@ -187,13 +187,13 @@ void ParksidePlem50C3Component::update() {
   this->log_data_packet(packet_last, PACKET_LEN);
 
   char line1[10] = "";
-  this->decode_line (line1, packet_last + 15*2);
+  this->decode_line (line1, packet_last + 10*2);
   ESP_LOGD(TAG, line1);
   char line2[10] = "";
-  this->decode_line (line2, packet_last + 87*2);
+  this->decode_line (line2, packet_last + 82*2);
   ESP_LOGD(TAG, line2);
   char line3[10] = "";
-  this->decode_line (line3, packet_last + 70*2);
+  this->decode_line (line3, packet_last + 65*2);
   ESP_LOGD(TAG, line3);
   char line4[10] = "";
   this->decode_last_line (line4, packet_last + 94);
