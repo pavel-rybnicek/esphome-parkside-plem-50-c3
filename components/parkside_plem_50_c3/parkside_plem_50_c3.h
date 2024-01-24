@@ -4,7 +4,6 @@
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include <Arduino.h>
-//#include "esphome/components/uart/uart.h" // TODO vyhazet zavislost
 
 namespace esphome {
 namespace parkside_plem_50_c3 {
@@ -16,8 +15,6 @@ class ParksidePlem50C3Component :  public PollingComponent {
     void dump_config() override;
 
 
-    void read_message(char buffer[]);
-    void write_message(const char * message);
     void set_distance_sensor(sensor::Sensor *s) { distance_sensor_ = s; }
     void set_error_sensor(text_sensor::TextSensor *s) { error_sensor_ = s; }
     void set_attempt_count(uint32_t s) { attempt_count_ = s; }
@@ -31,9 +28,12 @@ class ParksidePlem50C3Component :  public PollingComponent {
 
     uint32_t attempt_count_ = 1;
 
-    void decodeUnit(char result[], const char unitCode);
-    void decodeLastLine(char result[], const byte * line);
-    const char * decodeDigitLastLine(const char digit1, const char digit2);
+    void log_data_packet(const byte packet, int len);
+    void decode_unit(char result[], const char unit_code);
+    void decode_last_line(char result[], const byte * line);
+    void decode_digit_last_line(char result[], const byte digit1, const byte digit2);
+    void decode_line(char result[], const byte * line);
+    void decode_digit(char result[], const byte digit1, const byte digit2);
     void process_error (const char * buffer, const char * errorText);
     int process_measurement (const char * measurement);
 
