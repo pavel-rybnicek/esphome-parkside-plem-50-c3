@@ -168,7 +168,7 @@ void ParksidePlem50C3Component::decode_unit(char result[], const char unit_code)
   }
 }
 
-void ParksidePlem50C3Component::log_data_packet(const byte packet, int len_to_log) {
+void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_log) {
   char formatted_out[BUFSIZE] = "";
   for (int j = 0; j < len_to_log; j++)
   {
