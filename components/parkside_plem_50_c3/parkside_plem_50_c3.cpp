@@ -15,7 +15,7 @@ static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PACKET_LEN = 99;
 
-static const int BUFSIZE = PACKET_LEN * 2;
+static const int BUFSIZE = 200; // TODO udělat jako dvojnásobek packet_len
 
 static byte packet_incoming[BUFSIZE]; // buffer for currently coming buffer
 static byte packet_last[BUFSIZE];     // last completely received packet
@@ -160,6 +160,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
   char formatted_out[BUFSIZE] = "";
   for (int j = 0; j < len_to_log; j++)
   {
+  ESP_LOGD(TAG, "%d", j);
     sprintf(formatted_out + j*2, "%02X", packet[j*2+1]); 
   }
   ESP_LOGD(TAG, formatted_out);
