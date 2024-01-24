@@ -63,7 +63,7 @@ void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte
   ESP_LOGD(TAG, "%02X %02X", digit1, digit2);
   ESP_LOGD(TAG, formattedOut);
 
-  char digit_string[3] = "";
+  const char * digit_string;
   switch (digit1 << 8 | digit2) // XXX extrahovat?
   {
     case 0x0000: digit_string =  ""; break;
@@ -112,7 +112,7 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
   ESP_LOGD(TAG, "%02X %02X", digit1, digit2);
   ESP_LOGD(TAG, formattedOut);
 
-  char digit_string[3] = "";
+  const char * digit_string = "";
   switch (digit1 << 8 | digit2)
   {
     case 0x0000: digit_string = ""; break;
