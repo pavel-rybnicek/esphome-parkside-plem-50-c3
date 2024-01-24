@@ -90,7 +90,7 @@ void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte
     case 0x1C1E: digit_string =  ".9"; break;
     default: digit_string =  "?";
   }
-  strcat (result, string_digit);
+  strcat (result, digit_string);
 }
 
 void ParksidePlem50C3Component::decode_last_line(char result[], const byte * line)
@@ -141,7 +141,7 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
     case 0x0006: digit_string = "r"; break;
     default: digit_string =  "?";
   }
-  strcat (result, string_digit);
+  strcat (result, digit_string);
 }
 
 void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
