@@ -58,11 +58,6 @@ void ParksidePlem50C3Component::setup() {
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
 {
-  char formattedOut[10] = ""; // TODO vyhodit
-  sprintf(formattedOut, "%04X", digit1 << 8 | digit2); 
-  ESP_LOGD(TAG, "%02X %02X", digit1, digit2);
-  ESP_LOGD(TAG, formattedOut);
-
   const char * digit_string;
   switch (digit1 << 8 | digit2) // XXX extrahovat?
   {
@@ -95,6 +90,9 @@ void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte
 
 void ParksidePlem50C3Component::decode_last_line(char result[], const byte * line)
 {
+  this->log_data_packet(line, 24);
+  ESP_LOGD(TAG, result);
+  
   this->decode_digit_last_line(result, line[1], line[3]);
   this->decode_digit_last_line(result, line[5], line[7]);
   this->decode_digit_last_line(result, line[9], line[11]);
