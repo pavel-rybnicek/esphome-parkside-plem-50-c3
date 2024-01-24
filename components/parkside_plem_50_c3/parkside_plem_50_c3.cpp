@@ -90,7 +90,7 @@ void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte
 
 void ParksidePlem50C3Component::decode_last_line(char result[], const byte * line)
 {
-  this->log_data_packet(line, 24);
+  this->log_data_packet(line, 18);
   
   this->decode_digit_last_line(result, line[1], line[3]);
   this->decode_digit_last_line(result, line[5], line[7]);
@@ -99,7 +99,7 @@ void ParksidePlem50C3Component::decode_last_line(char result[], const byte * lin
   this->decode_digit_last_line(result, line[17], line[19]);
   this->decode_digit_last_line(result, line[21], line[23]);
   // position 25 contains unit - we have a separate method to parse it
-  // positions 27-37 containt ft/in fractions - we don't need to parse these
+  // positions 27-36 containt ft/in fractions - we don't need to parse these
   
   ESP_LOGD(TAG, result);
 }
@@ -140,7 +140,7 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
 
 void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
 {
-  this->log_data_packet(line, 20);
+  this->log_data_packet(line, 17);
 
   this->decode_digit(result, line[31], line[33]);
   this->decode_digit(result, line[27], line[29]);
