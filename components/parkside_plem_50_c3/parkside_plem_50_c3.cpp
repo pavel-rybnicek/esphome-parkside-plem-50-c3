@@ -173,7 +173,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  analogWrite(PIN_VYPINAC, 15);
+  analogWrite(PIN_VYPINAC, 26);
   //digitalWrite(PIN_KLAVESNICE, 0);
   //digitalWrite(PIN_PODIVNY, 0);
   delay (1000);
