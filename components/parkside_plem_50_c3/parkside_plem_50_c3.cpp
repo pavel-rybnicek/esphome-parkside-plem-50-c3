@@ -173,7 +173,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  digitalWrite(PIN_VYPINAC, 1);
+  /*digitalWrite(PIN_VYPINAC, 1);
   digitalWrite(PIN_KLAVESNICE, 0);
   digitalWrite(PIN_PODIVNY, 0);
   delay (3000);
@@ -181,7 +181,7 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_KLAVESNICE, 1);
   digitalWrite(PIN_PODIVNY, 1);
   delay (3000);
-  digitalWrite(PIN_VYPINAC, 1);
+  digitalWrite(PIN_VYPINAC, 1);*/
   //digitalWrite(PIN_KLAVESNICE, 0);
   // ESP_LOGD(TAG, "update()");
   // vypnuti
