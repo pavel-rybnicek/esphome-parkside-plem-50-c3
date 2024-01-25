@@ -31,7 +31,7 @@ Pinout of the FFC (left to right):
 16. Signal for buzzer
 17.
 18. Keyboard
-19. Power button 
+19. Power button - when pressed, set to 0.33V
 20. Needs to be set to 1
 
 ## Usage
