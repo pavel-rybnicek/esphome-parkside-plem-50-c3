@@ -15,7 +15,7 @@ static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PIN_VYPINAC = 12;
 static const int PIN_KLAVESNICE = 13;
-static const int PIN_PODIVNY = 3;
+static const int PIN_LASER_PWR = 3;
 
 static const int PACKET_LEN = 99;
 
@@ -175,6 +175,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
+  digitalWrite(PIN_LASER_PWR, 1);
   digitalWrite(PIN_VYPINAC, 0);
   //digitalWrite(PIN_KLAVESNICE, 0);
   //digitalWrite(13, 1);
@@ -218,6 +219,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_last[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
+  digitalWrite(PIN_LASER_PWR, 0);
   //sei();
 }
 
