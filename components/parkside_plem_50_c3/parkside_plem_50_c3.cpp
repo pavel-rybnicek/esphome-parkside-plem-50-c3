@@ -176,7 +176,7 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
   digitalWrite(PIN_PODIVNY, 1);
-  delay (500);
+  delay (3000);
   digitalWrite(PIN_VYPINAC, 1);
   //digitalWrite(PIN_KLAVESNICE, 0);
   // ESP_LOGD(TAG, "update()");
