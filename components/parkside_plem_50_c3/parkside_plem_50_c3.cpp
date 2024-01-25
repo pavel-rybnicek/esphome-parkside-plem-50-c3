@@ -13,6 +13,9 @@ static const char *TAG = "parkside_plem_50_c3";
 
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
+static const int PIN_VYPINAC = 12;
+static const int PIN_KLAVESNICE = 13;
+
 static const int PACKET_LEN = 99;
 
 static const int BUFSIZE = 200; // TODO udělat jako dvojnásobek packet_len
@@ -45,6 +48,8 @@ void ParksidePlem50C3Component::setup() {
   memset (packet_last, 0, BUFSIZE);
   
   pinMode(4, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   digitalWrite(4, 0); // XXX zhasnuti diody
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
@@ -167,6 +172,11 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
+  digitalWrite(PIN_VYPINAC, 0);
+  digitalWrite(PIN_KLAVESNICE, 1);
+  delay (500);
+  digitalWrite(PIN_VYPINAC, 1);
+  digitalWrite(PIN_KLAVESNICE, 0);
   // ESP_LOGD(TAG, "update()");
   // vypnuti
   //  digitalWrite(16, 0);
