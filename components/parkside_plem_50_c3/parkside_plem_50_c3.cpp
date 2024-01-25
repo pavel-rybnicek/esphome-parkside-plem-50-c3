@@ -51,7 +51,7 @@ void ParksidePlem50C3Component::setup() {
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(4, 0); // XXX zhasnuti diody
+  digitalWrite(4, 1); // XXX zhasnuti diody
   digitalWrite(PIN_VYPINAC, 1);
   digitalWrite(PIN_KLAVESNICE, 1);
   Wire1.onReceive(onReceive);
@@ -175,7 +175,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  digitalWrite(PIN_LASER_PWR, 1);
+  digitalWrite(PIN_LASER_PWR, 0);
   digitalWrite(PIN_VYPINAC, 0);
   //digitalWrite(PIN_KLAVESNICE, 0);
   //digitalWrite(13, 1);
@@ -219,7 +219,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_last[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
-  digitalWrite(PIN_LASER_PWR, 0);
+  digitalWrite(PIN_LASER_PWR, 1);
   //sei();
 }
 
