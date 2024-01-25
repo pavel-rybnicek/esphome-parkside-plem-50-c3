@@ -60,7 +60,7 @@ void ParksidePlem50C3Component::setup() {
 
  rtc_wdt_protect_off(); rtc_wdt_disable();
 delay (200);
-  digitalWrite(PIN_LASER_PWR, 1);
+  digitalWrite(PIN_LASER_PWR, 0);
   digitalWrite(PIN_VYPINAC, 0);
   delay (100);
   digitalWrite(PIN_VYPINAC, 1);
@@ -226,7 +226,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_last[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
-  digitalWrite(PIN_LASER_PWR, 1);
+  //digitalWrite(PIN_LASER_PWR, 1);
   //sei();
 }
 
