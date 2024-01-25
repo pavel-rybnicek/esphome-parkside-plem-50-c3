@@ -175,11 +175,11 @@ void ParksidePlem50C3Component::update() {
 
   analogWrite(PIN_VYPINAC, 26);
   //digitalWrite(PIN_KLAVESNICE, 0);
-  //digitalWrite(PIN_PODIVNY, 0);
+  digitalWrite(PIN_PODIVNY, 0);
   delay (1000);
   analogWrite(PIN_VYPINAC, 255);
   //digitalWrite(PIN_KLAVESNICE, 1);
-  //digitalWrite(PIN_PODIVNY, 1);
+  digitalWrite(PIN_PODIVNY, 1);
   //delay (3000);
   //digitalWrite(PIN_VYPINAC, 1);*/
   //digitalWrite(PIN_KLAVESNICE, 0);
