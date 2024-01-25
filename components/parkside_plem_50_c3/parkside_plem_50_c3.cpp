@@ -15,6 +15,7 @@ static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PIN_VYPINAC = 12;
 static const int PIN_KLAVESNICE = 13;
+static const int PIN_PODIVNY = 3;
 
 static const int PACKET_LEN = 99;
 
@@ -174,9 +175,10 @@ void ParksidePlem50C3Component::update() {
 
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
+  digitalWrite(PIN_PODIVNY, 1);
   delay (500);
   digitalWrite(PIN_VYPINAC, 1);
-  digitalWrite(PIN_KLAVESNICE, 0);
+  //digitalWrite(PIN_KLAVESNICE, 0);
   // ESP_LOGD(TAG, "update()");
   // vypnuti
   //  digitalWrite(16, 0);
