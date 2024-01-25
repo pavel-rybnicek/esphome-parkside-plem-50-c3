@@ -160,7 +160,6 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
   char formatted_out[BUFSIZE] = "";
   for (int j = 0; j < len_to_log; j++)
   {
-  ESP_LOGD(TAG, "%d", j);
     sprintf(formatted_out + j*2, "%02X", packet[j*2+1]); 
   }
   ESP_LOGD(TAG, formatted_out);
