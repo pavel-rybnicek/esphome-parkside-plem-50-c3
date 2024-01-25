@@ -59,6 +59,12 @@ void ParksidePlem50C3Component::setup() {
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
  rtc_wdt_protect_off(); rtc_wdt_disable();
+delay (200);
+  digitalWrite(PIN_LASER_PWR, 0);
+  digitalWrite(PIN_VYPINAC, 0);
+  delay (100);
+  digitalWrite(PIN_VYPINAC, 1);
+  delay (400);
 }
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
@@ -178,18 +184,16 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  digitalWrite(PIN_LASER_PWR, 0);
-  digitalWrite(PIN_VYPINAC, 0);
-  //digitalWrite(PIN_KLAVESNICE, 0);
-  //digitalWrite(13, 1);
-  delay (100);
-  digitalWrite(PIN_VYPINAC, 1);
-  delay (400);
+  //digitalWrite(PIN_LASER_PWR, 0);
+  //digitalWrite(PIN_VYPINAC, 0);
+  //delay (100);
+  //digitalWrite(PIN_VYPINAC, 1);
+  //delay (400);
   digitalWrite(PIN_KLAVESNICE, 0);
-  delay (1400);
+  delay (400);
   digitalWrite(PIN_KLAVESNICE, 1);
 
-  delay (2000);
+  //delay (2000);
   //digitalWrite(PIN_KLAVESNICE, 1);
   //delay (3000);
   //digitalWrite(PIN_VYPINAC, 1);*/
