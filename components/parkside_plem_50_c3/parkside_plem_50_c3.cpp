@@ -160,6 +160,7 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
   char formatted_out[BUFSIZE] = "";
   for (int j = 0; j < len_to_log; j++)
   {
+  ESP_LOGD(TAG, "%d", j);
     sprintf(formatted_out + j*2, "%02X", packet[j*2+1]); 
   }
   ESP_LOGD(TAG, formatted_out);
@@ -176,15 +177,20 @@ void ParksidePlem50C3Component::update() {
   //cli();
   this->log_data_packet(packet_last, PACKET_LEN);
 
-  char line1[10] = "";
-  this->decode_line (line1, packet_last + 10*2);
-  ESP_LOGD(TAG, line1);
-  char line2[10] = "";
-  this->decode_line (line2, packet_last + 82*2);
-  ESP_LOGD(TAG, line2);
+  // we don't need to read first two lines
+  //char line1[10] = "";
+  //this->decode_line (line1, packet_last + 10*2);
+  //ESP_LOGD(TAG, line1);
+  //char line2[10] = "";
+  //this->decode_line (line2, packet_last + 82*2);
+  //ESP_LOGD(TAG, line2);
+
+  // third line can contain information about error
   char line3[10] = "";
   this->decode_line (line3, packet_last + 65*2);
   ESP_LOGD(TAG, line3);
+
+  // last line contains value, error number or nothing
   char line4[10] = "";
   this->decode_last_line (line4, packet_last + 94);
   this->decode_unit(line4, (char)packet_last[119]); // FIXME tohle je fuj
@@ -203,53 +209,13 @@ void ParksidePlem50C3Component::process_error (const char * buffer, const char *
 
 int ParksidePlem50C3Component::process_measurement (const char * measurement)
 {
-  // measurement looks like <m30m356>
-  // where 3rd char is length of the value. Value itself
-  // starts at 6th character
-  if (!strncmp ("<0E", measurement, 3))
-  {
-    this->process_error (measurement, "Error received");
-    return -1;
-  }
-  if (strncmp ("<m", measurement, 2))
-  {
-    this->process_error (measurement, "Response should start with '<m'");
-    return -2;
-  }
-
-  // get value len
-  int valueLen = measurement[2] - '0';
-  if ( valueLen < 0 || valueLen > '9')
-  {
-    this->process_error (measurement, "3rd character must be digit - len of value");
-    return -3;
-  }
-
-  char value[10] = "";
-  strncpy (value, measurement + 5, valueLen);
-  if ( valueLen != strlen (value))
-  {
-    this->process_error (measurement, "Error parsing value - invalid length?");
-    return -4;
-  }
-
-  // previous checks aren't really necessary...
-  int val = atoi(measurement + 5);
-  if (val <= 0)
-  {
-    this->process_error (measurement, "Cannot get meaningfull value");
-    return -5;
-  }
-  ESP_LOGD(TAG, "Buffer: '%s', value is %d", measurement, val);
-  this->distance_sensor_->publish_state(val);
-  this->error_sensor_->publish_state("");
-
   return 0;
 }
 
 void ParksidePlem50C3Component::dump_config() {
   ESP_LOGCONFIG(TAG, "ParksidePlem50C3 Component:");
   ESP_LOGCONFIG(TAG, "  attempt_count: %d", this->attempt_count_);
+  // TODO
 }
 
 } // parkside_plem_50_c3
