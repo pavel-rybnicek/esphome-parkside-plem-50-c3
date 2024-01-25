@@ -5,6 +5,7 @@
 #include "parkside_plem_50_c3.h"
 #include "Wire.h"
 #include <cstring>
+#include <soc/rtc_wdt.h>
 
 namespace esphome {
 namespace parkside_plem_50_c3 {
@@ -56,6 +57,8 @@ void ParksidePlem50C3Component::setup() {
   digitalWrite(PIN_KLAVESNICE, 1);
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
+
+ rtc_wdt_protect_off(); rtc_wdt_disable();
 }
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
