@@ -26,6 +26,7 @@ static byte packet_incoming[BUFSIZE]; // buffer for currently coming buffer
 static byte packet_last[BUFSIZE];     // last completely received packet
 
 int i = 0;
+int messages_count = 0;
 
 void onReceive(int len){
   //ESP_LOGE(TAG, "onReceive[%d]: ", len);
@@ -41,6 +42,7 @@ void onReceive(int len){
   {
     memcpy (packet_last, packet_incoming, 198);
     i = 0;
+    messages_count++;
   }
 }
 
@@ -216,10 +218,12 @@ void ParksidePlem50C3Component::update() {
 
   // TODO zamykat
   // TODO vyházet čísla registrů?
+  ESP_LOGD (TAG, "%d messages", messages_count);
   cli();
   byte packet_to_process[BUFSIZE];
   memcpy (packet_to_process, packet_last, BUFSIZE);
   memset (packet_last, 0, BUFSIZE);
+  messages_count = 0;
   sei();
 
   this->log_data_packet(packet_to_process, PACKET_LEN);
