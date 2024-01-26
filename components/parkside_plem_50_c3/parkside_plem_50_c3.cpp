@@ -61,7 +61,7 @@ void ParksidePlem50C3Component::setup() {
  rtc_wdt_protect_off(); rtc_wdt_disable();
 delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
-  digitalAnalog(PIN_VYPINAC, 15);
+  analogWrite(PIN_VYPINAC, 15);
   delay (400);
   digitalWrite(PIN_VYPINAC, 1);
   delay (400);
