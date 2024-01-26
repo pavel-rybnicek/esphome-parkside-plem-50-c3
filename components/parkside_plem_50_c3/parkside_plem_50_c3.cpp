@@ -54,9 +54,9 @@ void ParksidePlem50C3Component::setup() {
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(4, 1); // XXX zhasnuti diody
-  digitalWrite(PIN_VYPINAC, 1);
-  digitalWrite(PIN_KLAVESNICE, 1);
+  //digitalWrite(4, 1); // XXX zhasnuti diody
+  //digitalWrite(PIN_VYPINAC, 1);
+  //digitalWrite(PIN_KLAVESNICE, 0);
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
