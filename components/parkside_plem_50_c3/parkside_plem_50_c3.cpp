@@ -59,12 +59,12 @@ void ParksidePlem50C3Component::setup() {
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
  rtc_wdt_protect_off(); rtc_wdt_disable();
-delay (200);
+/*delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
   analogWrite(PIN_VYPINAC, 15);
   delay (400);
   digitalWrite(PIN_VYPINAC, 1);
-  delay (400);
+  delay (400);*/
 }
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
@@ -184,7 +184,12 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
-  //digitalWrite(PIN_LASER_PWR, 0);
+  delay (200);
+  digitalWrite(PIN_LASER_PWR, 0);
+  analogWrite(PIN_VYPINAC, 15);
+  delay (400);
+  digitalWrite(PIN_VYPINAC, 1);
+  delay (400);*//digitalWrite(PIN_LASER_PWR, 0);
   //digitalWrite(PIN_VYPINAC, 0);
   //delay (100);
   //digitalWrite(PIN_VYPINAC, 1);
@@ -237,8 +242,8 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
-  //digitalWrite(PIN_LASER_PWR, 1);
-  //sei();
+  digitalWrite(PIN_LASER_PWR, 1);
+  sei();
 }
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
