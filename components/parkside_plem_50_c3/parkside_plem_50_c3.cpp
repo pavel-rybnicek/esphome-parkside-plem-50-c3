@@ -7,10 +7,6 @@
 #include <cstring>
 #include <soc/rtc_wdt.h>
 
-#include "driver/dac_oneshot.h"
-#include "esp_adc/adc_oneshot.h"
-#include "esp_check.h"
-
 namespace esphome {
 namespace parkside_plem_50_c3 {
 
