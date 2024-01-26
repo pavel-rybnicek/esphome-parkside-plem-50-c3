@@ -59,10 +59,10 @@ void ParksidePlem50C3Component::setup() {
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
  rtc_wdt_protect_off(); rtc_wdt_disable();
-delay (200);
+delay (1200);
   digitalWrite(PIN_LASER_PWR, 0);
   analogWrite(PIN_VYPINAC, 15);
-  delay (400);
+  delay (1000);
   digitalWrite(PIN_VYPINAC, 1);
   delay (400);
 }
