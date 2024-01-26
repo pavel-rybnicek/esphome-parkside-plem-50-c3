@@ -186,21 +186,30 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::update() {
 
+  ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
   analogWrite(PIN_VYPINAC, 15);
+  ESP_LOGD (TAG, "%d messages zap", messages_count);
   delay (400);
+  ESP_LOGD (TAG, "%d messages zap2", messages_count);
   digitalWrite(PIN_VYPINAC, 1);
+  ESP_LOGD (TAG, "%d messages zap3", messages_count);
   delay (400);
+  ESP_LOGD (TAG, "%d messages zap4", messages_count);
   //digitalWrite(PIN_LASER_PWR, 0);
   //digitalWrite(PIN_VYPINAC, 0);
   //delay (100);
   //digitalWrite(PIN_VYPINAC, 1);
   //delay (400);
   digitalWrite(PIN_KLAVESNICE, 0);
+  ESP_LOGD (TAG, "%d messages mer1", messages_count);
   delay (1000);
+  ESP_LOGD (TAG, "%d messages mer2", messages_count);
   digitalWrite(PIN_KLAVESNICE, 1);
+  ESP_LOGD (TAG, "%d messages mer3", messages_count);
   delay (2000);
+  ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
   //delay (2000);
   //digitalWrite(PIN_KLAVESNICE, 1);
