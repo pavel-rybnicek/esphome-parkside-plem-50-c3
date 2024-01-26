@@ -212,7 +212,7 @@ void ParksidePlem50C3Component::update() {
   // TODO vyházet čísla registrů?
   byte packet_to_process[BUFSIZE];
   memcpy (packet_to_process, packet_last, BUFSIZE);
-  memset (packet_last, 0, BUFSIZE);
+  //memset (packet_last, 0, BUFSIZE);
 
   this->log_data_packet(packet_to_process, PACKET_LEN);
 
