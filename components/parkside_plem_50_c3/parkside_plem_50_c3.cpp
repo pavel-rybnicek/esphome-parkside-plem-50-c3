@@ -7,6 +7,10 @@
 #include <cstring>
 #include <soc/rtc_wdt.h>
 
+#include "driver/dac_oneshot.h"
+#include "esp_adc/adc_oneshot.h"
+#include "esp_check.h"
+
 namespace esphome {
 namespace parkside_plem_50_c3 {
 
@@ -54,7 +58,8 @@ void ParksidePlem50C3Component::setup() {
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  //digitalWrite(4, 1); // XXX zhasnuti diody
+  digitalWrite(4, 0); // XXX zhasnuti diody
+  //digitalWrite(4, 1);
   //digitalWrite(PIN_VYPINAC, 1);
   //digitalWrite(PIN_KLAVESNICE, 0);
   Wire1.onReceive(onReceive);
@@ -189,7 +194,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
-  analogWrite(PIN_VYPINAC, 15);
+  //analogWrite(PIN_VYPINAC, 15);
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages zap", messages_count);
   delay (1000);
@@ -257,7 +262,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
-  digitalWrite(PIN_LASER_PWR, 1);
+ // digitalWrite(PIN_LASER_PWR, 1);
   sei();
 }
 
