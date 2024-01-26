@@ -191,7 +191,7 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_LASER_PWR, 0);
   analogWrite(PIN_VYPINAC, 15);
   ESP_LOGD (TAG, "%d messages zap", messages_count);
-  delay (400);
+  delay (1000);
   ESP_LOGD (TAG, "%d messages zap2", messages_count);
   digitalWrite(PIN_VYPINAC, 1);
   ESP_LOGD (TAG, "%d messages zap3", messages_count);
@@ -208,7 +208,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages mer2", messages_count);
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages mer3", messages_count);
-  delay (2000);
+  delay (1000);
   ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
   //delay (2000);
