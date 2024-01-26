@@ -206,25 +206,33 @@ void ParksidePlem50C3Component::update() {
   //  digitalWrite(16, 1);
   //  ESP_LOGD(TAG, "switched on");
   //cli();
-  this->log_data_packet(packet_last, PACKET_LEN);
+
+
+  // TODO zamykat
+  // TODO vyházet čísla registrů?
+  byte packet_to_process[BUFSIZE];
+  memcpy (packet_to_process, packet_last, BUFSIZE);
+  memset (packet_last, 0, BUFSIZE);
+
+  this->log_data_packet(packet_to_process, PACKET_LEN);
 
   // we don't need to read first two lines
   //char line1[10] = "";
-  //this->decode_line (line1, packet_last + 10*2);
+  //this->decode_line (line1, packet_to_process + 10*2);
   //ESP_LOGD(TAG, line1);
   //char line2[10] = "";
-  //this->decode_line (line2, packet_last + 82*2);
+  //this->decode_line (line2, packet_to_process + 82*2);
   //ESP_LOGD(TAG, line2);
 
   // third line can contain information about error
   char line3[10] = "";
-  this->decode_line (line3, packet_last + 65*2);
+  this->decode_line (line3, packet_to_process + 65*2);
   ESP_LOGD(TAG, line3);
 
   // last line contains value, error number or nothing
   char line4[10] = "";
-  this->decode_last_line (line4, packet_last + 94);
-  this->decode_unit(line4, (char)packet_last[119]); // FIXME tohle je fuj
+  this->decode_last_line (line4, packet_to_process + 94);
+  this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
   //digitalWrite(PIN_LASER_PWR, 1);
