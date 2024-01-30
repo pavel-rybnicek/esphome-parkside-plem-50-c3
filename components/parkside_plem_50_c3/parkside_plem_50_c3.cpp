@@ -260,7 +260,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
- // digitalWrite(PIN_LASER_PWR, 1);
+  digitalWrite(PIN_LASER_PWR, 1);
   sei();
 }
 
