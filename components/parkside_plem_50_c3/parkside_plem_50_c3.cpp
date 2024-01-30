@@ -122,6 +122,7 @@ void ParksidePlem50C3Component::decode_digit(char result[], const byte digit1, c
   switch (digit1 << 8 | digit2)
   {
     case 0x0000: digit_string = ""; break;
+    case 0x0002: digit_string = "-"; break;
     case 0x1E0C: digit_string = "0"; break;
     case 0x1E1C: digit_string = ".0"; break;
     case 0x0600: digit_string = "1"; break;
@@ -192,7 +193,6 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_LASER_PWR, 0);
   delay (10);
   digitalWrite(PIN_VYPINAC, 0);
-  //analogWrite(PIN_VYPINAC, 15);
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages zap", messages_count);
   delay (300);
@@ -201,11 +201,6 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages zap3", messages_count);
   delay (400);
   ESP_LOGD (TAG, "%d messages zap4", messages_count);
-  //digitalWrite(PIN_LASER_PWR, 0);
-  //digitalWrite(PIN_VYPINAC, 0);
-  //delay (100);
-  //digitalWrite(PIN_VYPINAC, 1);
-  //delay (400);
   digitalWrite(PIN_KLAVESNICE, 0);
   ESP_LOGD (TAG, "%d messages mer1", messages_count);
   delay (300);
@@ -214,20 +209,6 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages mer3", messages_count);
   delay (3000);
   ESP_LOGD (TAG, "%d messages mer4", messages_count);
-
-  //delay (2000);
-  //digitalWrite(PIN_KLAVESNICE, 1);
-  //delay (3000);
-  //digitalWrite(PIN_VYPINAC, 1);*/
-  //digitalWrite(PIN_KLAVESNICE, 0);
-  // ESP_LOGD(TAG, "update()");
-  // vypnuti
-  //  digitalWrite(16, 0);
-  //  delay(5000);
-  //  digitalWrite(16, 1);
-  //  ESP_LOGD(TAG, "switched on");
-  //cli();
-
 
   // TODO zamykat
   // TODO vyházet čísla registrů?
