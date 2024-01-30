@@ -190,7 +190,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
-  delay (200);
+  delay (10);
   digitalWrite(PIN_VYPINAC, 0);
   //analogWrite(PIN_VYPINAC, 15);
   digitalWrite(PIN_KLAVESNICE, 1);
