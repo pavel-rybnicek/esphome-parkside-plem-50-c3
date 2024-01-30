@@ -54,8 +54,8 @@ void ParksidePlem50C3Component::setup() {
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(4, 0); // XXX zhasnuti diody
-  //digitalWrite(4, 1);
+  //digitalWrite(4, 0); // XXX zhasnuti diody
+  digitalWrite(4, 1);
   //digitalWrite(PIN_VYPINAC, 1);
   //digitalWrite(PIN_KLAVESNICE, 0);
   Wire1.onReceive(onReceive);
@@ -190,10 +190,12 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   digitalWrite(PIN_LASER_PWR, 0);
+  delay (200);
+  digitalWrite(PIN_VYPINAC, 0);
   //analogWrite(PIN_VYPINAC, 15);
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages zap", messages_count);
-  delay (1000);
+  delay (300);
   ESP_LOGD (TAG, "%d messages zap2", messages_count);
   digitalWrite(PIN_VYPINAC, 1);
   ESP_LOGD (TAG, "%d messages zap3", messages_count);
