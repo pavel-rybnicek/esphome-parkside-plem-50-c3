@@ -51,23 +51,15 @@ void ParksidePlem50C3Component::setup() {
   memset (packet_incoming, 0, BUFSIZE);
   memset (packet_last, 0, BUFSIZE);
   
-  pinMode(4, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
-  //digitalWrite(4, 0); // XXX zhasnuti diody
-  digitalWrite(4, 1);
-  //digitalWrite(PIN_VYPINAC, 1);
-  //digitalWrite(PIN_KLAVESNICE, 0);
+  pinMode(PIN_LASER_PWR, OUTPUT);
+  pinMode(PIN_VYPINAC, OUTPUT);
+  pinMode(PIN_KLAVESNICE, OUTPUT);
+  //digitalWrite(PIN_LASER_PWR, 0); // XXX zhasnuti diody
+  digitalWrite(PIN_LASER_PWR, 1); // vypnuti laseru
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
- rtc_wdt_protect_off(); rtc_wdt_disable();
-/*delay (200);
-  digitalWrite(PIN_LASER_PWR, 0);
-  analogWrite(PIN_VYPINAC, 15);
-  delay (400);
-  digitalWrite(PIN_VYPINAC, 1);
-  delay (400);*/
+ rtc_wdt_protect_off(); rtc_wdt_disable(); // TODO co s timhle?
 }
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
