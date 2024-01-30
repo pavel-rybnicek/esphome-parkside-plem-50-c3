@@ -212,7 +212,7 @@ void ParksidePlem50C3Component::update() {
   messages_count = 0;
   sei();
 
-  this->log_data_packet(packet_to_process, PACKET_LEN);
+  // this->log_data_packet(packet_to_process, PACKET_LEN);
 
   // we don't need to read first two lines
   //char line1[10] = "";
