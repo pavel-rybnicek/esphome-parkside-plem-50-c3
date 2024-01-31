@@ -217,7 +217,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages mer2", messages_count);
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages mer3", messages_count);
-  delay (3000);
+  //delay (3000);
   ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
   byte packet_to_process[BUFSIZE];
