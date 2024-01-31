@@ -28,6 +28,7 @@ class ParksidePlem50C3Component :  public PollingComponent {
 
     uint32_t attempt_count_ = 1;
 
+    void wait_for_packet(const byte packet[]);
     void log_data_packet(const byte packet[], int len);
     void decode_unit(char result[], const char unit_code);
     void decode_last_line(char result[], const byte * line);

@@ -178,6 +178,23 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
   ESP_LOGD(TAG, formatted_out);
 }
 
+void ParksidePlem50C3Component::wait_for_packet (byte packet[])
+{
+  int messages_count_current = messages_count; // XXX sjednotit nazvoslovi
+
+  while (messages_count_current == messages_count)
+  {
+    delay (1); // TODO nejakej maximalni pocet
+  }
+  ESP_LOGD (TAG, "%d messages arrived", messages_count);
+  cli(); // TODO lepší zamykání?
+  memcpy (packet, packet_last, BUFSIZE);
+  memset (packet_last, 0, BUFSIZE);
+  messages_count = 0;
+  sei();
+  // TODO vyházet čísla registrů?
+}
+
 void ParksidePlem50C3Component::update() {
 
   ESP_LOGD (TAG, "%d messages start", messages_count);
@@ -202,15 +219,8 @@ void ParksidePlem50C3Component::update() {
   delay (3000);
   ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
-  // TODO zamykat
-  // TODO vyházet čísla registrů?
-  ESP_LOGD (TAG, "%d messages", messages_count);
-  cli();
   byte packet_to_process[BUFSIZE];
-  memcpy (packet_to_process, packet_last, BUFSIZE);
-  memset (packet_last, 0, BUFSIZE);
-  messages_count = 0;
-  sei();
+  this->wait_for_packet(packet_to_process);
 
   // this->log_data_packet(packet_to_process, PACKET_LEN);
 
