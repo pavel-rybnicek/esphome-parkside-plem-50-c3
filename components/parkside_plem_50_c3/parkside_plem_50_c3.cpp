@@ -208,7 +208,7 @@ void ParksidePlem50C3Component::update() {
   // here we expect first two messages - all FFs and all zeros
   {
     int messages_current = messages_count;
-    while (messages_current <= messages_count + 2)
+    while (messages_current < messages_count + 2)
     {
       delay (1);
     }
