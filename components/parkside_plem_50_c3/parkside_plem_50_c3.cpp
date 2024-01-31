@@ -199,25 +199,28 @@ void ParksidePlem50C3Component::update() {
 
   ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
+  // switch on - hold button
   digitalWrite(PIN_LASER_PWR, 0);
   delay (10);
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
-  ESP_LOGD (TAG, "%d messages zap", messages_count);
   delay (300); // probably the safe minimum delay, 200 does not work
   // here we expect 2 first messages - first is FFs, second is zeroes
   ESP_LOGD (TAG, "%d messages zap2", messages_count);
+
+  // switch on - release button
   digitalWrite(PIN_VYPINAC, 1);
-  ESP_LOGD (TAG, "%d messages zap3", messages_count);
   delay (400);
+  // one message XXX look at it
   ESP_LOGD (TAG, "%d messages zap4", messages_count);
+
+  // measurement - press button
   digitalWrite(PIN_KLAVESNICE, 0);
   ESP_LOGD (TAG, "%d messages mer1", messages_count);
   delay (300);
   ESP_LOGD (TAG, "%d messages mer2", messages_count);
+  // measurement - release button
   digitalWrite(PIN_KLAVESNICE, 1);
-  ESP_LOGD (TAG, "%d messages mer3", messages_count);
-  //delay (3000);
   ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
   byte packet_to_process[BUFSIZE];
