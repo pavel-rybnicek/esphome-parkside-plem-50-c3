@@ -202,15 +202,10 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_LASER_PWR, 0);
   delay (10);
   digitalWrite(PIN_VYPINAC, 0);
-  int messages_current = messages_count;
   digitalWrite(PIN_KLAVESNICE, 1);
   ESP_LOGD (TAG, "%d messages zap", messages_count);
-  //delay (300);
-  // here we expect first two messages - all FFs and all zeros
-  while (messages_current + 2 > messages_count)
-  {
-    delay (1);
-  }
+  delay (100);
+  // here we expect 2 first messages - first is FFs, second is zeroes
   ESP_LOGD (TAG, "%d messages zap2", messages_count);
   digitalWrite(PIN_VYPINAC, 1);
   ESP_LOGD (TAG, "%d messages zap3", messages_count);
