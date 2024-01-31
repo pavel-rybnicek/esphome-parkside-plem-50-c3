@@ -207,7 +207,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages zap", messages_count);
   //delay (300);
   // here we expect first two messages - all FFs and all zeros
-  while (messages_current < messages_count + 2)
+  while (messages_current + 2 > messages_count)
   {
     delay (1);
   }
