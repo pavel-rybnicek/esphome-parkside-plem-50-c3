@@ -239,6 +239,12 @@ void ParksidePlem50C3Component::update() {
 
 void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
 {
+// TODO chyby 204 Calculation error  Refer to user manual, repeat the procedures.
+// TODO chyby 220 Low battery Replace batteries or charge the batteries.
+// TODO chyby 255 Received signal too weak or measurement time too long
+// TODO chyby 256 Received signal too strong Improve the reﬂective surface.  (Don't aim at strong light.)
+// TODO chyby 261 Out of measuring range
+// TODO chyby 500 Hardware error Switch on / oﬀ the product, if 
   char err_msg[100] = "";
   sprintf(err_msg, "%s, buffer: '%s'", errorText, buffer);
   ESP_LOGE(TAG, "%s", err_msg);
