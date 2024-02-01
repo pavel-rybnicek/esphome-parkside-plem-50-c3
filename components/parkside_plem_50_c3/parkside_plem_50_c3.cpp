@@ -55,7 +55,7 @@ void ParksidePlem50C3Component::setup() {
   pinMode(PIN_VYPINAC, OUTPUT);
   pinMode(PIN_KLAVESNICE, OUTPUT);
   //digitalWrite(PIN_LASER_PWR, 0); // XXX zhasnuti diody
-  digitalWrite(PIN_LASER_PWR, 1); // vypnuti laseru
+  digitalWrite(PIN_LASER_PWR, 0); // vypnuti laseru
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
 
@@ -200,7 +200,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   // switch on - hold button
-  digitalWrite(PIN_LASER_PWR, 0);
+  digitalWrite(PIN_LASER_PWR, 1);
   delay (10);
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
@@ -247,7 +247,7 @@ void ParksidePlem50C3Component::update() {
   this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
   ESP_LOGD(TAG, line4);
 
-  digitalWrite(PIN_LASER_PWR, 1);
+  digitalWrite(PIN_LASER_PWR, 0);
   sei();
 }
 
