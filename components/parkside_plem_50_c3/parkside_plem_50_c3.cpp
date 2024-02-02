@@ -158,7 +158,7 @@ void ParksidePlem50C3Component::decode_unit(char result[], byte unit_code)
   switch (unit_code)
   {
     case 0x00: strcat (result, ""); break;
-    case 0x0A: strcat (result, "ft"); break;
+    case 0x0A: strcat (result, "m"); break;
     case 0x10: strcat (result, "ft"); break;
     case 0x06: strcat (result, "in"); break;
     default: strcat (result, "?"); break;
