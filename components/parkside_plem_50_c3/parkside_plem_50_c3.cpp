@@ -283,6 +283,7 @@ void ParksidePlem50C3Component::process_measurement (const char * line3, const c
   if (!strcmp("Error", line3))
   {
     this->process_error (line4);
+    return;
   }
 
   // parse value
