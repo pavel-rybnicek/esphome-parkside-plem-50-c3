@@ -272,7 +272,6 @@ void ParksidePlem50C3Component::process_error (const char * line4)
     case 500: err_msg = "500 Hardware error"; break;
     default: err_msg = "Unknown error";
   }
-  sprintf(err_msg, "%s, buffer: '%s'", errorText, buffer);
   ESP_LOGE(TAG, err_msg);
   this->error_sensor_->publish_state(err_msg);
   this->distance_sensor_->publish_state(NAN);
