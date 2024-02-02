@@ -204,7 +204,7 @@ void ParksidePlem50C3Component::update() {
     digitalWrite(PIN_LASER_PWR, 1); 
     delay (200);
   }
-  ESP_LOGD (TAG, "Power state %d" digitalRead(PIN_LASER_PWR));
+  ESP_LOGD (TAG, "Power state %d", digitalRead(PIN_LASER_PWR));
   // switch on - hold button
   digitalWrite(PIN_LASER_PWR, 0);
   delay (10); // this delay is important
