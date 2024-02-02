@@ -16,7 +16,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(ParksidePlem50C3Component),
 
     cv.Optional(CONF_DISTANCE):
-      sensor.sensor_schema(device_class=DEVICE_CLASS_DISTANCE,accuracy_decimals=0,state_class=STATE_CLASS_MEASUREMENT).extend(),
+      sensor.sensor_schema(device_class=DEVICE_CLASS_DISTANCE,accuracy_decimals=3,state_class=STATE_CLASS_MEASUREMENT).extend(),
 
     cv.Optional(CONF_ERROR):
       text_sensor.text_sensor_schema().extend(),

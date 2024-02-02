@@ -270,9 +270,16 @@ void ParksidePlem50C3Component::process_error (const char * buffer, const char *
   this->error_sensor_->publish_state(err_msg);
 }
 
-int ParksidePlem50C3Component::process_measurement (const char * measurement)
+void ParksidePlem50C3Component::process_measurement (const char * line3, const char * line4)
 {
-  return 0;
+  // XXX kontrola na chybu
+  // XXX kontrola na chybu
+
+  // parse value
+  float measured value = std::stof(line4);
+
+  // publish value
+  this->distance_sensor_->publish_state(value);
 }
 
 void ParksidePlem50C3Component::dump_config() {
