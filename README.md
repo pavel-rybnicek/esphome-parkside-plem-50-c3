@@ -12,6 +12,18 @@ Keyboard PCB address is 3F, I2C frequency is 400 kHz.
 
 For ESPHome integration we need the laser sensor module only.
 
+This module does NOT work with ESP8266 - it's unable to work as I2C slave.  The configuration was developed with ESP32CAM module.
+
+## Usage
+[See here for how to use external components](https://esphome.io/components/external_components.html).
+See the example configuration file.
+
+To work properly, the range finder must be set to metric system (using a Unit key). Processing of feet/inc is not implemented.  
+
+## Connection
+
+
+## Developer notes
 Pinout of the FFC (left to right):
 1. VCC (3.3V)
 2. VCC (3.3V)
@@ -44,8 +56,4 @@ Keyboard (at reference 3.38V):                                             │
 2.77V Unit                           
 2.35V Clear                          
 1.69V +/-
-
-## Usage
-[See here for how to use external components](https://esphome.io/components/external_components.html).
-See the example configuration file.
 

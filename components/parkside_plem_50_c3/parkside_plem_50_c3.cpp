@@ -16,7 +16,7 @@ static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PACKET_LEN = 99;
 
-static const int BUFSIZE = 200; // TODO udělat jako dvojnásobek packet_len
+static const int BUFSIZE = 200; 
 
 static byte packet_incoming[BUFSIZE]; // buffer for currently coming buffer
 static byte packet_last[BUFSIZE];     // last completely received packet
@@ -34,7 +34,7 @@ void onReceive(int len){
     i = 0;
     return;
   }
-  if (i >= 198) // XXX prověřit možnost přetečení
+  if (i >= 198)
   {
     memcpy (packet_last, packet_incoming, 198);
     i = 0;
@@ -174,11 +174,11 @@ void ParksidePlem50C3Component::log_data_packet(const byte packet[], int len_to_
 
 void ParksidePlem50C3Component::wait_for_packet (byte packet[])
 {
-  int messages_count_current = messages_count; // XXX sjednotit nazvoslovi
+  int messages_count_current = messages_count;
 
   while (messages_count_current == messages_count)
   {
-    delay (1); // TODO nejakej maximalni pocet
+    delay (1); // if no message arrives, the watchdog will reset the device
   }
   ESP_LOGD (TAG, "%d messages arrived", messages_count);
   cli(); // disable interrupts
@@ -242,7 +242,7 @@ void ParksidePlem50C3Component::update() {
   // last line contains value, error number or nothing
   char line4[10] = "";
   this->decode_last_line (line4, packet_to_process + 94);
-  this->decode_unit(line4, (char)packet_to_process[119]); // FIXME tohle je fuj
+  this->decode_unit(line4, packet_to_process + 119);
   ESP_LOGD(TAG, line4);
   
   this->process_measurement (line3, line4);
