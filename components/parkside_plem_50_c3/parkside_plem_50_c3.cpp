@@ -260,7 +260,7 @@ void ParksidePlem50C3Component::update() {
 void ParksidePlem50C3Component::process_error (const char * line4)
 {
   int error_code = std::stol(line4);
-  char * err_msg = "";
+  const char * err_msg;
 
   switch (error_code)
   {
@@ -270,6 +270,7 @@ void ParksidePlem50C3Component::process_error (const char * line4)
     case 256: err_msg = "256 Received signal too strong"; break;
     case 261: err_msg = "261 Out of measuring range"; break;
     case 500: err_msg = "500 Hardware error"; break;
+    default: err_msg = "Unknown error";
   }
   sprintf(err_msg, "%s, buffer: '%s'", errorText, buffer);
   ESP_LOGE(TAG, err_msg);
