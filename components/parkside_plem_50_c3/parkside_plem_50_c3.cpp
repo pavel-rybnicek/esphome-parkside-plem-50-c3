@@ -51,7 +51,7 @@ void ParksidePlem50C3Component::setup() {
   pinMode(this->pin_laser_power_, OUTPUT);
   pinMode(this->pin_power_button_, OUTPUT);
   pinMode(this->pin_keyboard_, OUTPUT);
-  digitalWrite(4, 0); // XXX zhasnuti diody
+  //digitalWrite(4, 0); // XXX zhasnuti diody
   digitalWrite(this->pin_laser_power_, 1); // vypnuti laseru
   Wire1.onReceive(onReceive);
   Wire1.begin(I2C_DEV_ADDR, this->pin_sda_, this->pin_scl_, 400000); // 14 je fialovy
