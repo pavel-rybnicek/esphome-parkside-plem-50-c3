@@ -21,7 +21,19 @@ See the example configuration file.
 To work properly, the range finder must be set to metric system (using a Unit key). Processing of feet/inc is not implemented.  
 
 ## Connection
+The laser module cannot be powered all the time. If we do that, it just won't respond.  
+However, it cannot be powered by GPIO directly - the current is too high. So we need to switch it somehow. I have used the 2301 P-MOSFET transistor, which is on the keyboard PCB.
 
+We need to connect the following wires:
+1-3 - laser module power. Connect it to the transistor Drain.
+Connect transistor Source to 3.3V.  
+Connect transistor Gate to GPIO, parameter pin_laser_power.  
+
+4-6 GND  
+10 connect to GPIO, parameter pin_sda.  
+11 connect to GPIO, parameter pin_scl.  
+18 connect to GPIO, parameter pin_keyboard.  
+19 connect to GPIO, parameter pin_power_button.  
 
 ## Developer notes
 Pinout of the FFC (left to right):

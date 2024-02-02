@@ -1,3 +1,13 @@
+esphome:
+  name: esp-cam1-vadna-kamera
+  friendly_name: esp-cam1-vadna-kamera
+  libraries:
+  - "Wire"
+
+.
+.
+.
+
 external_components:
   source:
     type: git
@@ -6,15 +16,15 @@ external_components:
 
 parkside_plem_50_c3:
   id: parkside_plem_50_c3_id
-  update_interval: 20s
-  pin_scl: 15
+  update_interval: 15s
   pin_sda: 14
+  pin_scl: 15
   pin_power_button: 12
   pin_keyboard: 13
   pin_laser_power: 2
 
   # number of attempts in a case of error (default is 1)
-  #attempt_count: 5 # not supported yet
+  # attempt_count: 5 NOT IMPLEMENTED
 
   # sensors names
   distance:
@@ -22,4 +32,4 @@ parkside_plem_50_c3:
     unit_of_measurement: "m"
   error:
     # indicates error of measurement
-    name: "Parkside PLEM 50 C3 - Error message"
+    name: "Parkside PLEM 50 C3 - Error message"    
