@@ -277,10 +277,10 @@ void ParksidePlem50C3Component::process_measurement (const char * line3, const c
   // XXX kontrola na chybu
 
   // parse value
-  float measured value = std::stof(line4);
+  float measured_value = std::stof(line4);
 
   // publish value
-  this->distance_sensor_->publish_state(value);
+  this->distance_sensor_->publish_state(measured_value);
 }
 
 void ParksidePlem50C3Component::dump_config() {
