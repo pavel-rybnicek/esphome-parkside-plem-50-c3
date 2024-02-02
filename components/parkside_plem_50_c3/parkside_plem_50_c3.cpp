@@ -151,7 +151,7 @@ void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
   // we don't need to parse these
 }
 
-void ParksidePlem50C3Component::decode_unit(char result[], const char unit_code)
+void ParksidePlem50C3Component::decode_unit(char result[], byte unit_code)
 {
   switch (unit_code) // XXX mozna by melo byt spis byte - obecne
   {
@@ -242,7 +242,7 @@ void ParksidePlem50C3Component::update() {
   // last line contains value, error number or nothing
   char line4[10] = "";
   this->decode_last_line (line4, packet_to_process + 94);
-  this->decode_unit(line4, packet_to_process + 119);
+  this->decode_unit(line4, packet_to_process[119]);
   ESP_LOGD(TAG, line4);
   
   this->process_measurement (line3, line4);
