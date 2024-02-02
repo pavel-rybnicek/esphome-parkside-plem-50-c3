@@ -199,16 +199,15 @@ void ParksidePlem50C3Component::wait_for_packet (byte packet[])
 void ParksidePlem50C3Component::update() {
 
   digitalWrite(PIN_LASER_PWR, 1);
-  ESP_LOGD (TAG, "%d messages start", messages_count);
   delay (200);
   // switch on - hold button
   digitalWrite(PIN_LASER_PWR, 0);
-  delay (10);
+  //delay (10);
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
   delay (300); // probably the safe minimum delay, 200 does not work
   // here we expect 2 first messages - first is FFs, second is zeroes
-  ESP_LOGD (TAG, "%d messages zap2", messages_count);
+  ESP_LOGD (TAG, "%d messages, power on", messages_count);
 
   // switch on - release button
   digitalWrite(PIN_VYPINAC, 1);
