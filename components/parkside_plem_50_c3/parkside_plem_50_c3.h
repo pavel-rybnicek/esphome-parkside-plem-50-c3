@@ -36,7 +36,7 @@ class ParksidePlem50C3Component :  public PollingComponent {
     void decode_line(char result[], const byte * line);
     void decode_digit(char result[], const byte digit1, const byte digit2);
     void process_error (const char * buffer, const char * errorText);
-    void process_measurement (const char * measurement);
+    void process_measurement (const char * line3, const char * line4)
 
 };
 
