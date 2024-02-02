@@ -20,7 +20,7 @@ class ParksidePlem50C3Component :  public PollingComponent {
     void set_attempt_count(uint32_t s)    { attempt_count_ = s; }
     void set_pin_sda(uint32_t s)          { pin_sda_ = s; }
     void set_pin_scl(uint32_t s)          { pin_scl_ = s; }
-    void set_pin_power_button(uint32_t s) { pin_power_button = s; }
+    void set_pin_power_button(uint32_t s) { pin_power_button_ = s; }
     void set_pin_keyboard(uint32_t s)     { pin_keyboard_ = s; }
     void set_pin_laser_power(uint32_t s)  { pin_laser_power_ = s; }
 
