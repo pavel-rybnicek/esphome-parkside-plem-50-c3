@@ -22,7 +22,7 @@ To work properly, the range finder must be set to metric system (using a Unit ke
 
 ## Connection
 The laser module cannot be powered all the time. If we do that, it just won't respond.  
-However, it cannot be powered by GPIO directly - the current is too high. So we need to switch it somehow. I have used the 2301 P-MOSFET transistor, which is on the keyboard PCB.
+However, it cannot be powered by GPIO directly - the current is too high. So we need to switch it somehow. I have used the 2301 P-MOSFET transistor, which is on the keyboard PCB. But you can use whichever suitable switch/relay module you like.  
 
 We need to connect the following wires:
 1-3 - laser module power. Connect it to the transistor Drain.
