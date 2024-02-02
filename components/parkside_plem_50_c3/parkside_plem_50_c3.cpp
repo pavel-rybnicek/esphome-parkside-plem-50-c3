@@ -285,6 +285,7 @@ void ParksidePlem50C3Component::process_measurement (const char * line3, const c
   {
     this->distance_sensor_->publish_state(NAN);
     this->error_sensor_->publish_state("Result is not in meters. Switch the range finder to metric.");
+    return;
   }
 
   // parse value
