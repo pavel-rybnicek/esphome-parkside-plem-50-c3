@@ -58,14 +58,14 @@ Pinout of the FFC (left to right):
 19. Power button - when pressed, set to 0.33V. Set to 0V works, too.
 20. Reference voltage for the keyboard?
 
-Keyboard (at reference 3.38V):                                             │
-0V Measure                           
-1.12V Functíons (volumes, Pythagoras...)
+Keyboard (at reference 3.38V):  
+0V Measure  
+1.12V Functíons (volumes, Pythagoras...)  
 2.67V Beep on/off                  
-3.02V Reference button
+3.02V Reference button  
 1.52V Continuous measurement         
 2.56V Memory                         
 2.77V Unit                           
 2.35V Clear                          
-1.69V +/-
+1.69V +/-  
 
