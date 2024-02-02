@@ -257,30 +257,40 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_LASER_PWR, 1);
 }
 
-void ParksidePlem50C3Component::process_error (const char * buffer, const char * errorText)
+void ParksidePlem50C3Component::process_error (char * line4)
 {
-// TODO chyby 204 Calculation error  Refer to user manual, repeat the procedures.
-// TODO chyby 220 Low battery Replace batteries or charge the batteries.
-// TODO chyby 255 Received signal too weak or measurement time too long
-// TODO chyby 256 Received signal too strong Improve the reﬂective surface.  (Don't aim at strong light.)
-// TODO chyby 261 Out of measuring range
-// TODO chyby 500 Hardware error Switch on / oﬀ the product, if 
-  char err_msg[100] = "";
+  int error_code = std::stol(line4);
+  char * err_msg = "";
+
+  switch (error_code)
+  {
+    case 204: err_msg = "204 Calculation error, should never happen"; break;
+    case 220: err_msg = "220 Low power"; break;
+    case 255: err_msg = "255 Received signal too weak or measurement time too long"; break;
+    case 256: err_msg = "256 Received signal too strong"; break;
+    case 261: err_msg = "261 Out of measuring range"; break;
+    case 500: err_msg = "500 Hardware error"; break;
+  }
   sprintf(err_msg, "%s, buffer: '%s'", errorText, buffer);
-  ESP_LOGE(TAG, "%s", err_msg);
+  ESP_LOGE(TAG, err_msg);
   this->error_sensor_->publish_state(err_msg);
+  this->distance_sensor_->publish_state(NAN);
 }
 
 void ParksidePlem50C3Component::process_measurement (const char * line3, const char * line4)
 {
-  // XXX kontrola na chybu
-  // XXX kontrola na chybu
+  // check for an error
+  if (!strcmp("Error", line3))
+  {
+    this->process_error (line4);
+  }
 
   // parse value
   float measured_value = std::stof(line4);
 
-  // publish value
+  // publish
   this->distance_sensor_->publish_state(measured_value);
+  this->error_sensor_->publish_state("");
 }
 
 void ParksidePlem50C3Component::dump_config() {
