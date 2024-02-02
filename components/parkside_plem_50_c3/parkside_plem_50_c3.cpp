@@ -292,8 +292,12 @@ void ParksidePlem50C3Component::process_measurement (const char * line3, const c
 
 void ParksidePlem50C3Component::dump_config() {
   ESP_LOGCONFIG(TAG, "ParksidePlem50C3 Component:");
-  ESP_LOGCONFIG(TAG, "  attempt_count: %d", this->attempt_count_);
-  // TODO
+  // not implemented ESP_LOGCONFIG(TAG, "  attempt_count: %d", this->attempt_count_);
+  ESP_LOGCONFIG(TAG, "  pin_sda         : %d", this->pin_sda_         );
+  ESP_LOGCONFIG(TAG, "  pin_scl         : %d", this->pin_scl_         );
+  ESP_LOGCONFIG(TAG, "  pin_power_button: %d", this->pin_power_button_);
+  ESP_LOGCONFIG(TAG, "  pin_keyboard    : %d", this->pin_keyboard_    );
+  ESP_LOGCONFIG(TAG, "  pin_laser_power : %d", this->pin_laser_power_ );
 }
 
 } // parkside_plem_50_c3
