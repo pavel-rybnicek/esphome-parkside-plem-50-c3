@@ -14,10 +14,6 @@ static const char *TAG = "parkside_plem_50_c3";
 
 static uint8_t I2C_DEV_ADDR = 0x3F;
 
-static const int PIN_VYPINAC = 12;
-static const int PIN_KLAVESNICE = 13;
-static const int PIN_LASER_PWR = 2;
-
 static const int PACKET_LEN = 99;
 
 static const int BUFSIZE = 200; // TODO udělat jako dvojnásobek packet_len
@@ -52,13 +48,13 @@ void ParksidePlem50C3Component::setup() {
   memset (packet_last, 0, BUFSIZE);
   
   pinMode(4, OUTPUT);
-  pinMode(PIN_LASER_PWR, OUTPUT);
-  pinMode(PIN_VYPINAC, OUTPUT);
-  pinMode(PIN_KLAVESNICE, OUTPUT);
+  pinMode(this->pin_laser_power_, OUTPUT);
+  pinMode(this->pin_power_button_, OUTPUT);
+  pinMode(this->pin_keyboard_, OUTPUT);
   digitalWrite(4, 0); // XXX zhasnuti diody
-  digitalWrite(PIN_LASER_PWR, 1); // vypnuti laseru
+  digitalWrite(this->pin_laser_power_, 1); // vypnuti laseru
   Wire1.onReceive(onReceive);
-  Wire1.begin(I2C_DEV_ADDR, 14, 15, 400000); // 14 je fialovy
+  Wire1.begin(I2C_DEV_ADDR, this->pin_sda_, this->pin_scl_, 400000); // 14 je fialovy
 
  rtc_wdt_protect_off(); rtc_wdt_disable(); // TODO co s timhle?
 }
@@ -199,23 +195,23 @@ void ParksidePlem50C3Component::wait_for_packet (byte packet[])
 void ParksidePlem50C3Component::update() {
 
   // we need to start powered off
-  if (digitalRead(PIN_LASER_PWR) == LOW) {
+  if (digitalRead(this->pin_laser_power_) == LOW) {
     ESP_LOGD (TAG, "Powered at the start, switch off");
-    digitalWrite(PIN_LASER_PWR, 1); 
+    digitalWrite(this->pin_laser_power_, 1); 
     delay (200);
   }
 
   // switch on - hold button
-  digitalWrite(PIN_LASER_PWR, 0);
+  digitalWrite(this->pin_laser_power_, 0);
   delay (10); // this delay is important
-  digitalWrite(PIN_VYPINAC, 0);
-  digitalWrite(PIN_KLAVESNICE, 1);
+  digitalWrite(this->pin_power_button_, 0);
+  digitalWrite(this->pin_keyboard_, 1);
   delay (300); // probably the safe minimum delay, 200 does not work
   // here we expect 2 first messages - first is FFs, second is zeroes
   ESP_LOGD (TAG, "%d messages, power on", messages_count);
 
   // switch on - release button
-  digitalWrite(PIN_VYPINAC, 1);
+  digitalWrite(this->pin_power_button_, 1);
   byte packet_to_process2[BUFSIZE];
   // wait for one message - dashes on the main line, laser is off
   this->wait_for_packet(packet_to_process2);
@@ -224,10 +220,10 @@ void ParksidePlem50C3Component::update() {
 
   // ready to take a measure
   // measurement - press button
-  digitalWrite(PIN_KLAVESNICE, 0);
+  digitalWrite(this->pin_keyboard_, 0);
   delay (100);
   // measurement - release button
-  digitalWrite(PIN_KLAVESNICE, 1);
+  digitalWrite(this->pin_keyboard_, 1);
 
   byte packet_to_process[BUFSIZE];
   this->wait_for_packet(packet_to_process);
@@ -254,7 +250,7 @@ void ParksidePlem50C3Component::update() {
   ESP_LOGD(TAG, line4);
   
   this->process_measurement (line3, line4);
-  digitalWrite(PIN_LASER_PWR, 1);
+  digitalWrite(this->pin_laser_power_, 1);
 }
 
 void ParksidePlem50C3Component::process_error (const char * line4)
