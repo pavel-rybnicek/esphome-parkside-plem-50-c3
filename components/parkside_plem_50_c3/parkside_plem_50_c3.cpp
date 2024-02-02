@@ -198,11 +198,11 @@ void ParksidePlem50C3Component::wait_for_packet (byte packet[])
 
 void ParksidePlem50C3Component::update() {
 
-  digitalWrite(PIN_LASER_PWR, 1);
-  delay (200);
+  digitalWrite(PIN_LASER_PWR, 1); // switch power off - just for sure
+  delay (10);
   // switch on - hold button
   digitalWrite(PIN_LASER_PWR, 0);
-  //delay (10);
+  delay (10); // this delay is important
   digitalWrite(PIN_VYPINAC, 0);
   digitalWrite(PIN_KLAVESNICE, 1);
   delay (300); // probably the safe minimum delay, 200 does not work
