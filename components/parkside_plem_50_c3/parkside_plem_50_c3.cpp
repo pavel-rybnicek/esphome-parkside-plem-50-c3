@@ -213,21 +213,17 @@ void ParksidePlem50C3Component::update() {
   // switch on - release button
   digitalWrite(PIN_VYPINAC, 1);
   byte packet_to_process2[BUFSIZE];
-  // one message - dashes on the main line, laser is off
+  // wait for one message - dashes on the main line, laser is off
   this->wait_for_packet(packet_to_process2);
+  // wait for one message - dashes on the main line, laser is on
   this->wait_for_packet(packet_to_process2);
-  this->log_data_packet(packet_to_process2, PACKET_LEN);
-  //delay (400);
-  ESP_LOGD (TAG, "%d messages zap4", messages_count);
 
+  // ready to take a measure
   // measurement - press button
   digitalWrite(PIN_KLAVESNICE, 0);
-  ESP_LOGD (TAG, "%d messages mer1", messages_count);
-  delay (300);
-  ESP_LOGD (TAG, "%d messages mer2", messages_count);
+  delay (100);
   // measurement - release button
   digitalWrite(PIN_KLAVESNICE, 1);
-  ESP_LOGD (TAG, "%d messages mer4", messages_count);
 
   byte packet_to_process[BUFSIZE];
   this->wait_for_packet(packet_to_process);
