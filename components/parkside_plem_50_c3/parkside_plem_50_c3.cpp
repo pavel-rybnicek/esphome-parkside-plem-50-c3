@@ -198,8 +198,12 @@ void ParksidePlem50C3Component::wait_for_packet (byte packet[])
 
 void ParksidePlem50C3Component::update() {
 
-  digitalWrite(PIN_LASER_PWR, 1); // switch power off - just for sure
-  delay (200);
+  if (digitalRead(PIN_LASER_PWR) == HIGH) {
+    // we need to start powered off
+    ESP_LOGD (TAG, "Powered at the start, switch off");
+    digitalWrite(PIN_LASER_PWR, 1); 
+    delay (200);
+  }
   // switch on - hold button
   digitalWrite(PIN_LASER_PWR, 0);
   delay (10); // this delay is important
