@@ -216,7 +216,7 @@ void ParksidePlem50C3Component::update() {
   // one message - dashes on the main line, laser is off
   this->wait_for_packet(packet_to_process2);
   this->wait_for_packet(packet_to_process2);
-  //this->log_data_packet(packet_to_process2, PACKET_LEN);
+  this->log_data_packet(packet_to_process2, PACKET_LEN);
   //delay (400);
   ESP_LOGD (TAG, "%d messages zap4", messages_count);
 
