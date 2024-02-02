@@ -16,7 +16,7 @@ static uint8_t I2C_DEV_ADDR = 0x3F;
 
 static const int PIN_VYPINAC = 12;
 static const int PIN_KLAVESNICE = 13;
-static const int PIN_LASER_PWR = 4;
+static const int PIN_LASER_PWR = 2;
 
 static const int PACKET_LEN = 99;
 
