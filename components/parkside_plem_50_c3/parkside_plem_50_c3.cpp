@@ -153,10 +153,12 @@ void ParksidePlem50C3Component::decode_line(char result[], const byte * line)
 
 void ParksidePlem50C3Component::decode_unit(char result[], byte unit_code)
 {
-  switch (unit_code) // XXX mozna by melo byt spis byte - obecne
+  // XXX would be nicer to avoid multiple strcat
+  // or use constants for the result
+  switch (unit_code)
   {
-    case 0x00: strcat (result, ""); break; // XXX do promenne a delat jeden strcat
-    case 0x0A: strcat (result, "m"); break;
+    case 0x00: strcat (result, ""); break;
+    case 0x0A: strcat (result, "ft"); break;
     case 0x10: strcat (result, "ft"); break;
     case 0x06: strcat (result, "in"); break;
     default: strcat (result, "?"); break;
@@ -276,6 +278,13 @@ void ParksidePlem50C3Component::process_measurement (const char * line3, const c
   {
     this->process_error (line4);
     return;
+  }
+
+  // check we got value in meters
+  if ('m' != line4[strlen(line4) - 1])
+  {
+    this->distance_sensor_->publish_state(NAN);
+    this->error_sensor_->publish_state("Result is not in meters. Switch the range finder to metric.");
   }
 
   // parse value
