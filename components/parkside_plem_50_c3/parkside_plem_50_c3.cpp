@@ -257,7 +257,7 @@ void ParksidePlem50C3Component::update() {
   digitalWrite(PIN_LASER_PWR, 1);
 }
 
-void ParksidePlem50C3Component::process_error (char * line4)
+void ParksidePlem50C3Component::process_error (const char * line4)
 {
   int error_code = std::stol(line4);
   char * err_msg = "";
