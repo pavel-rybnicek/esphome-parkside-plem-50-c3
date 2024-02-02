@@ -51,12 +51,9 @@ void ParksidePlem50C3Component::setup() {
   pinMode(this->pin_laser_power_, OUTPUT);
   pinMode(this->pin_power_button_, OUTPUT);
   pinMode(this->pin_keyboard_, OUTPUT);
-  //digitalWrite(4, 0); // XXX zhasnuti diody
   digitalWrite(this->pin_laser_power_, 1); // vypnuti laseru
   Wire1.onReceive(onReceive);
-  Wire1.begin(I2C_DEV_ADDR, this->pin_sda_, this->pin_scl_, 400000); // 14 je fialovy
-
- rtc_wdt_protect_off(); rtc_wdt_disable(); // TODO co s timhle?
+  Wire1.begin(I2C_DEV_ADDR, this->pin_sda_, this->pin_scl_, 400000);
 }
 
 void ParksidePlem50C3Component::decode_digit_last_line(char result[], const byte digit1, const byte digit2)
@@ -184,12 +181,11 @@ void ParksidePlem50C3Component::wait_for_packet (byte packet[])
     delay (1); // TODO nejakej maximalni pocet
   }
   ESP_LOGD (TAG, "%d messages arrived", messages_count);
-  cli(); // TODO lepší zamykání?
+  cli(); // disable interrupts
   memcpy (packet, packet_last, BUFSIZE);
   memset (packet_last, 0, BUFSIZE);
   messages_count = 0;
-  sei();
-  // TODO vyházet čísla registrů?
+  sei(); // allow interrupts
 }
 
 void ParksidePlem50C3Component::update() {
