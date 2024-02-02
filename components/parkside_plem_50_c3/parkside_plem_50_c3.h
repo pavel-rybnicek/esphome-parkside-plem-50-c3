@@ -17,7 +17,12 @@ class ParksidePlem50C3Component :  public PollingComponent {
 
     void set_distance_sensor(sensor::Sensor *s) { distance_sensor_ = s; }
     void set_error_sensor(text_sensor::TextSensor *s) { error_sensor_ = s; }
-    void set_attempt_count(uint32_t s) { attempt_count_ = s; }
+    void set_attempt_count(uint32_t s)    { attempt_count_ = s; }
+    void set_pin_sda(uint32_t s)          { pin_sda_ = s; }
+    void set_pin_scl(uint32_t s)          { pin_scl_ = s; }
+    void set_pin_power_button(uint32_t s) { pin_power_button = s; }
+    void set_pin_keyboard(uint32_t s)     { pin_keyboard_ = s; }
+    void set_pin_laser_power(uint32_t s)  { pin_laser_power_ = s; }
 
   protected:
 
@@ -26,7 +31,12 @@ class ParksidePlem50C3Component :  public PollingComponent {
 
     text_sensor::TextSensor *error_sensor_;
 
-    uint32_t attempt_count_ = 1;
+    uint32_t attempt_count_    = 1;
+    uint32_t pin_sda_;
+    uint32_t pin_scl_;
+    uint32_t pin_power_button_;
+    uint32_t pin_keyboard_;
+    uint32_t pin_laser_power_;
 
     void wait_for_packet(byte packet[]);
     void log_data_packet(const byte packet[], int len);

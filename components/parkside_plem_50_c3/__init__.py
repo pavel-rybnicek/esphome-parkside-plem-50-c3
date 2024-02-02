@@ -11,6 +11,11 @@ AUTO_LOAD = ['sensor', 'text_sensor']
 CONF_DISTANCE = "distance"
 CONF_ERROR = "error"
 CONF_ATTEMPT_COUNT = "attempt_count"
+CONF_PIN_SDA = "pin_sda"
+CONF_PIN_SCL = "pin_scl"
+CONF_PIN_POWER_BUTTON = "pin_power_button"
+CONF_PIN_KEYBOARD     = "pin_keyboard"
+CONF_PIN_LASER_POWER  = "pin_laser_power"
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(ParksidePlem50C3Component),
@@ -23,11 +28,23 @@ CONFIG_SCHEMA = cv.Schema({
 
     cv.Optional(CONF_ATTEMPT_COUNT): cv.positive_int,
 
+    cv.Required(CONF_PIN_SDA): cv.positive_int,
+    cv.Required(CONF_PIN_SCL): cv.positive_int,
+    cv.Required(CONF_PIN_POWER_BUTTON): cv.positive_int,
+    cv.Required(CONF_PIN_KEYBOARD):     cv.positive_int,
+    cv.Required(CONF_PIN_LASER_POWER):  cv.positive_int,
+
 }).extend(cv.polling_component_schema('10s'))
 
 def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
+
+    cg.add(var.set_pin_sda(config[CONF_PIN_SDA]))
+    cg.add(var.set_pin_scl(config[CONF_PIN_SCL]))
+    cg.add(var.set_pin_power_button(config[CONF_PIN_POWER_BUTTON]))
+    cg.add(var.set_pin_keyboard(config[CONF_PIN_KEYBOARD]))
+    cg.add(var.set_pin_laser_power(config[CONF_PIN_LASER_POWER]))
 
     if CONF_ATTEMPT_COUNT in config:
       conf = config[CONF_ATTEMPT_COUNT]
